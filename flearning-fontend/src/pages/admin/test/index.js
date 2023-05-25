@@ -13,11 +13,13 @@ const AdminTestPage = () => {
     }, [])
 
 
+    const courses = useSelector((state) => state.course.data);
     const isRefresh = useSelector((state) => state.test.isRefresh);
     const tests = useSelector((state) => state.test.data);
-    const courses = useSelector((state) => state.course.data);
     
+    console.log("new tests: ", tests);
     React.useEffect(() => {
+        // alert("ok");
         dispatch(getTests());
     }, [isRefresh]);
     

@@ -2,8 +2,8 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import userSlice from '../../../redux/userSlice';
-import { getCourses, insertCourse } from '../../../redux/courseSlice';
-import AdminCourses from './AdminCourses';
+import { getCourses } from '../../../redux/courseSlice';
+import ListCourse from "../../../components/Course/ListCourse";
 
 const AdminCoursesPage = () => {
   const dispatch = useDispatch();
@@ -13,19 +13,20 @@ const AdminCoursesPage = () => {
   );
 
   const { setCurrentPage } = userSlice.actions;
+
   React.useEffect(() => {
     dispatch(setCurrentPage("Quản lý khóa học"));
-  }, [])
+  }, [dispatch, setCurrentPage])
 
   React.useEffect(() => {
     dispatch(getCourses());
-  }, [isRefreshCourse])
+  }, [dispatch, isRefreshCourse])
 
 
   return (
     <>
 
-     <AdminCourses courses={courses} />
+     <ListCourse data={courses} />
     </>
   );
 };

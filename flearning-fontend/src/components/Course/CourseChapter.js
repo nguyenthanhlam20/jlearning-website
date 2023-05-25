@@ -36,6 +36,8 @@ const CourseChapter = ({ chapter, setIsAddChapter, setCurrentChapter, setActionT
     const [isActionTypeLesson, setActionTypeLesson] = React.useState(ACTION_TYPE.INSERT);
     const { setIsRefreshSpecific } = courseSlice.actions;
 
+
+
     const [currentLesson, setCurrentLesson] = React.useState();
     const handleChange =
         (panel) => (event, isExpanded) => {
@@ -61,13 +63,18 @@ const CourseChapter = ({ chapter, setIsAddChapter, setCurrentChapter, setActionT
 
     const handleConfirmDeleteLesson = (value) => {
         if (value == true) {
-            
-            dispatch(deleteLesson({lesson_id: currentLesson.lesson_id}));
+
+            dispatch(deleteLesson({ lesson_id: currentLesson.lesson_id }));
             dispatch(setIsRefreshSpecific(true));
-        } 
+        }
         setIsDeleteLesson(false);
     }
 
+    React.useEffect(() => {
+        if (isAddLesson === false) {
+            setCurrentLesson(null);
+        }
+    }, [isAddLesson])
     return (
         <div className="p-1">
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -87,7 +94,10 @@ const CourseChapter = ({ chapter, setIsAddChapter, setCurrentChapter, setActionT
                 </AccordionSummary>
                 <AccordionDetails sx={{ p: 3 }}>
                     <Stack direction={"row"} spacing={1}>
-                        <Button sx={{ fontSize: 12 }} variant="contained" className='bg-primary' onClick={() => setIsAddLesson(true)}>
+                        <Button sx={{ fontSize: 12 }} variant="contained" className='bg-primary' onClick={() => {
+                            setActionTypeLesson(ACTION_TYPE.INSERT);
+                            setIsAddLesson(true);
+                        }}>
 
                             <SvgIcon sx={{ fontSize: 18, mr: 1 }} >
                                 <PlusIcon />
@@ -98,9 +108,7 @@ const CourseChapter = ({ chapter, setIsAddChapter, setCurrentChapter, setActionT
                                 <TrashIcon />
                             </SvgIcon> Xóa chương
                         </Button>
-                        <Button sx={{ fontSize: 12 }} variant="contained" className='bg-primary' onClick={() => 
-                        
-                        {
+                        <Button sx={{ fontSize: 12 }} variant="contained" className='bg-primary' onClick={() => {
                             setActionTypeChapter(ACTION_TYPE.UPDATE);
                             setCurrentChapter(chapter);
                             setIsAddChapter(true);
@@ -129,15 +137,15 @@ const CourseChapter = ({ chapter, setIsAddChapter, setCurrentChapter, setActionT
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
                                         <TableCell component="th" scope="row">
-                                            {row.lesson_name}
+                                            <Typography className="overflow-auto" sx={{ overflow: "auto !important", height: 50 }} >   {row.lesson_name}</Typography>
                                         </TableCell>
-                                        <TableCell >{row.description}</TableCell>
+                                        <TableCell> <Typography className="overflow-auto" sx={{ overflow: "auto !important", height: 50 }} >{row.description}</Typography></TableCell>
                                         {/* <TableCell >{getDuration(row.lesson_duration)}</TableCell> */}
                                         <TableCell>
                                             <Stack direction={"row"} spacing={1}>
                                                 <Button
                                                     variant="contained" size="small" className='bg-pink-500' onClick={() => {
-                                                        setActionTypeLesson(ACTION_TYPE.UPDATE);
+
                                                         setCurrentLesson(row);
                                                         setIsDeleteLesson(true);
                                                     }
@@ -148,7 +156,7 @@ const CourseChapter = ({ chapter, setIsAddChapter, setCurrentChapter, setActionT
                                                     </SvgIcon>
                                                 </Button>
                                                 <Button variant="contained" size="small" className='bg-primary' onClick={() => {
-
+                                                    setActionTypeLesson(ACTION_TYPE.UPDATE);
                                                     setCurrentLesson(row);
                                                     setIsAddLesson(true);
                                                 }
@@ -170,7 +178,7 @@ const CourseChapter = ({ chapter, setIsAddChapter, setCurrentChapter, setActionT
                 </AccordionDetails>
             </Accordion>
             <CourseLessonModal currentLesson={currentLesson} actionType={isActionTypeLesson} chapterId={chapter.chapter_id} isOpenModal={isAddLesson} handleCloseModal={() => setIsAddLesson(false)} />
-            <ConfirmDialog title={"Xác nhận xóa chương"} description={"Chương và tất cả khóa học trong chương sẽ bị xóa! Bạn có muốn tiếp tục?"} isOpen={isDeleteChapter} handleAction={handleConfirmDeleteChapter} />
+            <ConfirmDialog title={"Xác nhận xóa chương"} description={"Chương và tất cả bài học, bài kiểm tra trong chương sẽ bị xóa! Bạn có muốn tiếp tục?"} isOpen={isDeleteChapter} handleAction={handleConfirmDeleteChapter} />
             <ConfirmDialog title={"Xác nhận xóa bài học"} description={"Tất cả thông tin liên quan tới bài học sẽ bị xóa! Bạn có muốn tiếp tục?"} isOpen={isDeleteLesson} handleAction={handleConfirmDeleteLesson} />
         </div>
 

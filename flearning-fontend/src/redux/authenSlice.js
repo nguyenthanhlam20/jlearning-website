@@ -12,6 +12,10 @@ export const signup = createAsyncThunk("signup", async (user) => {
   const response = await authenServices.signup(user);
   return response;
 });
+export const changePassword = createAsyncThunk("change-password", async (user) => {
+  const response = await authenServices.changePassword(user);
+  return response;
+});
 
 export const forgotPassword = createAsyncThunk("forgot-password", async (email) => {
   const response = await authenServices.forgotPassword(email);
@@ -67,7 +71,10 @@ const authenSlice = createSlice({
         }
         toast.success("Tạo tài khoản thành công");
         console.log("create account successfully", action.payload);
-      });
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        toast.success("Thay đổi mật khẩu thành công");
+      }) ;
   },
 });
 

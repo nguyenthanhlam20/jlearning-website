@@ -41,7 +41,7 @@ function App() {
     user = JSON.parse(sessionStorage.getItem("user"));
     dispatch(setUser(user));
   }
-  console.log("user: ", user);
+  // console.log("user: ", user);
 
   // const [isRefresh, setIsRefresh] = React.useState(false);
 

@@ -20,18 +20,19 @@ const ListContact = ({ data }) => {
     const [responseMessage, setResponseMessage] = useState("");
     const [searchTerm, setSearchTerm] = React.useState({ value: '' });
 
+    React.useEffect(() => {
+        setContacts(data);
+        setContactsPagination(data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+    }, [data]);
 
     const handleCloseModal = () => {
         setIsOpenModal(false);
     }
 
-    const handlePageChange = useCallback(
-        (value) => {
-            setPage(value);
-            setContactsPagination(contacts.slice(value * rowsPerPage, value * rowsPerPage + rowsPerPage))
-        },
-        []
-    );
+    const handlePageChange = (value) => {
+        setPage(value);
+        setContactsPagination(contacts.slice(value * rowsPerPage, value * rowsPerPage + rowsPerPage));
+    }
 
     const handleChangeValue = (value) => {
         setResponseMessage(value);
@@ -43,19 +44,17 @@ const ListContact = ({ data }) => {
         });
     }
 
-    const handleRowsPerPageChange = useCallback(
-        (event) => {
-            setPage(0);
-            setRowsPerPage(event.target.value);
+    const handleRowsPerPageChange = (event) => {
+        setPage(0);
+        const rows = event.target.value;
+        setRowsPerPage(rows);
 
-            let endIndex = rowsPerPage;
-            if (contacts.length < endIndex) endIndex = contacts.length;
+        let endIndex = rowsPerPage;
+        if (contacts.length < endIndex) endIndex = contacts.length;
 
 
-            setContactsPagination(contacts.slice(0, endIndex))
-        },
-        []
-    );
+        setContactsPagination(contacts.slice(0, endIndex));
+    }
 
     React.useEffect(() => {
         const result = data.filter((contact) => contact.name.toLowerCase().includes(searchTerm.value.toLowerCase()));
@@ -87,17 +86,17 @@ const ListContact = ({ data }) => {
                 }}
             >
                 <Container maxWidth="xl">
-                    <Stack spacing={3} sx={{ mt: 3 }}>
+                    <Stack spacing={2} sx={{ mt: 2 }}>
                         <Card sx={{ p: 2, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;" }}>
                             <Stack direction={"row"} spacing={2}>
                                 <div className="w-96 ">
                                     <AppInput value={searchTerm.value} handleChangeValue={handleChangeSearchTerm} placeholder={"Tìm kiếm liên hệ"} title={"value"} />
                                 </div>
-                              {searchTerm.value != ''?   <Button 
-                              onClick={handleClearSearch}
-                              variant='contained' size='medium' color='error' >
-                                        Xóa
-                                    </Button> : <></>}
+                                {searchTerm.value != '' ? <Button
+                                    onClick={handleClearSearch}
+                                    variant='contained' size='medium' color='error' >
+                                    Xóa
+                                </Button> : <></>}
                             </Stack>
                         </Card>
                         {contacts.length > 0 ? <ContactTable

@@ -7,25 +7,10 @@ import {
 } from '@mui/material';
 import AppInput from '../AppInput/AppInput';
 import AppCheckBox from '../AppInput/AppCheckBox';
+import AppTextArea from '../AppInput/AppTextArea';
+import AppInputNumber from '../AppInput/AppInputNumber';
+import AppInputCurrency from '../AppInput/AppInputCurrency';
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  },
-  {
-    value: 'los-angeles',
-    label: 'Los Angeles'
-  }
-];
 
 export const CourseProfileDetails = ({handleChangeValue, values}) => {
   
@@ -51,13 +36,13 @@ export const CourseProfileDetails = ({handleChangeValue, values}) => {
             xs={12}
             md={6}
           >
-            <AppInput height={""} value={values?.duration} title={"duration"} handleChangeValue={handleChangeValue} placeholder={"Thời gian học (tháng)"} />
+            <AppInputNumber height={""} value={values?.duration} title={"duration"} handleChangeValue={handleChangeValue} placeholder={"Thời gian học (tháng)"} />
           </Grid>
           <Grid
             xs={12}
             md={6}
           >
-            <AppInput height={""} value={values?.price} title={"price"} handleChangeValue={handleChangeValue} placeholder={"Giá (vnd)"} />
+            <AppInputCurrency height={""} value={values?.price} title={"price"} handleChangeValue={handleChangeValue} placeholder={"Giá (vnd)"} />
           </Grid>
           <Grid
             xs={12}
@@ -70,7 +55,7 @@ export const CourseProfileDetails = ({handleChangeValue, values}) => {
             md={12}
             
           >
-            <AppInput height={"h-[100px]"} value={values?.description} title={"description"} handleChangeValue={handleChangeValue} placeholder={"Mô tả khóa học"} />
+            <AppTextArea height={"h-[150px]"} value={values?.description} title={"description"} handleChangeValue={handleChangeValue} placeholder={"Mô tả khóa học"} />
           </Grid>
 
         </Grid>

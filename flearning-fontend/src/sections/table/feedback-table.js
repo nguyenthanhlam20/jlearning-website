@@ -25,34 +25,7 @@ export const FeedbackTable = (props) => {
     onRowsPerPageChange,
     page = 0,
     rowsPerPage = 0,
-    setIsOpenModal,
-    setCurrentContact,
-    isOpenModal
   } = props;
-
-  const [currentId, setCurrentId] = React.useState(null);
-
-  const handleContact = () => {
-    var feedback = items.find(item => item.feedback_id === currentId);
-    setCurrentContact(feedback);
-
-    // alert(currentId);
-    setIsOpenModal(true);
-  }
-
-  React.useEffect(() => {
-    if (currentId !== null) {
-      handleContact();
-    }
-  }, [currentId]);
-
-  React.useEffect(() => {
-    if (isOpenModal === false) {
-      setCurrentId(null);
-    }
-  }, [isOpenModal]);
-
-
 
   return (<>
     <Card sx={{ height: 450, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;" }}   >

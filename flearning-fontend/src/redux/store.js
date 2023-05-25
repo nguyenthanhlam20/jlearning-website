@@ -12,7 +12,7 @@ import supportSlice from "./supportSlice";
 import chapterSlice from "./chapterSlice";
 import lessonSlice from "./lessonSlice";
 import testSlice from "./testSlice";
-import quizSlice from "./quizSlice";
+import questionSlice from "./questionSlice";
 
 const persistConfig = {
   key: "root",
@@ -30,7 +30,7 @@ const rootReducers = combineReducers({
   chapter: chapterSlice.reducer,
   lesson: lessonSlice.reducer,
   test: testSlice.reducer,
-  quiz: quizSlice.reducer,
+  question: questionSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

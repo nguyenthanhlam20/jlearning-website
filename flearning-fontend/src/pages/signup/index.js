@@ -6,18 +6,19 @@ import { toast } from 'react-toastify';
 import { APP_CONSTANTS, SIGNIN_CONSTANTS, SIGNUP_CONSTANTS } from "../../constants/constants";
 import { ROUTE_CONSTANTS } from "../../constants/route.constants";
 import GoogleLogin from "react-google-login";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [fullname, setFullname] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [isAgreedPolicy, setIsAgreedPolicy] = React.useState(false);
-  const authenState = useSelector((state) => state.authen);
-  const { signOut } = authenSlice.actions;
+
+
+
 
   const handleSignup = () => {
     if(fullname == "" || email == "" || password == "" || confirmPassword == "") {
@@ -28,7 +29,8 @@ const SignupPage = () => {
       } else {
        if(isAgreedPolicy) {
         console.log("email: " + email + ", password: " + password + ", fullname: " + fullname);
-        dispatch(signup({fullname: fullname, email: email, password: password}));
+        dispatch(signup({fullname: fullname, email: email, password: password, role_id: 2}));
+        navigate(ROUTE_CONSTANTS.SIGN_IN);
        } else {
         toast.warning('Hãy đồng ý với chính sách và điều khoản');
        }

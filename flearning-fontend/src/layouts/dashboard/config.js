@@ -20,7 +20,7 @@ export const items = [
   },
   {
     title: 'Khóa học',
-    path: '/authen/courses',
+    path: '/authen/course',
     icon: (
       <SvgIcon fontSize="small">
         <BookOpenIcon />
@@ -29,7 +29,7 @@ export const items = [
   },
   {
     title: 'Bài kiểm tra',
-    path: '/authen/tests',
+    path: '/authen/test',
     icon: (
       <SvgIcon fontSize="small">
         <QuestionMarkCircleIcon />

@@ -45,6 +45,7 @@ const courseSlice = createSlice({
     builder.addCase(updateCourse.fulfilled, (state, action) => {
       toast.success("Cập nhật khóa học thành công");
       state.isRefresh = true;
+      state.isRefreshSpecific = true;
 
     });
 

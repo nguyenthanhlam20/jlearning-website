@@ -10,6 +10,7 @@ const AppSelect = ({ title, display, data, value, placeholder,handleChangeValue 
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         label={placeholder}
+        value={value}
         onChange={(e) => handleChangeValue(title, e.target.value)}
       >
         {data?.map((item, key) => {

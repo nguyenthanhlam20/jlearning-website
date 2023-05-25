@@ -1,7 +1,6 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Box,
-  Button,
   Divider,
   Drawer,
   Stack,
@@ -11,10 +10,9 @@ import { Logo } from "../../components/Logo";
 import { Scrollbar } from "../../components/ScrollBar";
 import { items } from "./config";
 import { SideNavItem } from "./side-nav-item";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export const SideNav = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const content = (
     <Scrollbar
@@ -65,7 +63,13 @@ export const SideNav = () => {
             }}
           >
             {items.map((item) => {
-              const active = item.path ? (location.pathname === item.path) : false;
+              let active = false;
+
+              if (location.pathname === "/" || item.path === "/") {
+                active = item.path ? (location.pathname === item.path) : false;
+              } else {
+                active = item.path ? (location.pathname.includes(item.path)) : false;
+              }
 
               return (
                 <SideNavItem

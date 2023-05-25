@@ -7,8 +7,8 @@ import userSlice from "../../../redux/userSlice";
 const AdminContactPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contact.data);
-  
   const isRefresh = useSelector((state) => state.contact.isRefresh);
+  
   const { setCurrentPage } = userSlice.actions;
   React.useEffect(() => {
     dispatch(setCurrentPage("Quản lý liên hệ"));

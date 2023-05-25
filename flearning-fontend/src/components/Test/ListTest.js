@@ -1,31 +1,56 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
     Box, Button, CardContent, Card, Container, Stack, Dialog, DialogTitle
-    , DialogContent, Divider, CardHeader, SvgIcon
+    , DialogContent, SvgIcon
 } from '@mui/material';
 import { TestTable } from '../../sections/table/test-table';
 import AppInput from '../../components/AppInput/AppInput';
 import AppTextArea from '../AppInput/AppTextArea';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
+import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
+import HandThumbUpIcon from '@heroicons/react/24/solid/HandThumbUpIcon';
 import AppSelect from '../AppInput/AppSelect';
-
+import { useDispatch } from "react-redux";
+import { insertTest } from '../../redux/testSlice';
+import { toast } from 'react-toastify';
+import AppInputNumber from '../AppInput/AppInputNumber';
 
 const ListTest = ({ data, courses }) => {
+    const dispatch = useDispatch();
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [page, setPage] = useState(0);
     const [tests, setTests] = useState(data);
-
     const [testsPagination, setTestsPagination] = useState(tests.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const [currentTest, setCurrentTest] = useState();
-    const [responseMessage, setResponseMessage] = useState("");
+    const [selectedCourse, setSelectedCourse] = useState();
     const [searchTerm, setSearchTerm] = React.useState({ value: '' });
+
+    React.useEffect(() => {
+        setTests(data);
+        setTestsPagination(data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+    }, [data])
+
     const [values, setValues] = React.useState({
         test_name: '',
         description: '',
         chapter_id: 0,
+        duration: 0,
         course_id: 0,
     })
+
+
+    React.useEffect(() => {
+        if (isOpenModal === false) {
+            setValues({
+                test_name: '',
+                description: '',
+                chapter_id: 0,
+                duration: 0,
+                course_id: 0,
+            })
+        }
+    }, [isOpenModal])
+
     const handleChangeValue = (key, value) => {
         setValues(prevValues => ({
             ...prevValues,
@@ -33,18 +58,21 @@ const ListTest = ({ data, courses }) => {
         }));
     };
 
+    React.useEffect(() => {
+
+        const course = courses.find((c) => c.course_id === values.course_id);
+        setSelectedCourse(course);
+    }, [values.course_id]);
+
 
     const handleCloseModal = () => {
         setIsOpenModal(false);
     }
 
-    const handlePageChange = useCallback(
-        (value) => {
-            setPage(value);
-            setTestsPagination(tests.slice(value * rowsPerPage, value * rowsPerPage + rowsPerPage))
-        },
-        []
-    );
+    const handlePageChange = (value) => {
+        setPage(value);
+        setTestsPagination(tests.slice(value * rowsPerPage, value * rowsPerPage + rowsPerPage));
+    }
 
 
     const handleChangeSearchTerm = (key, value) => {
@@ -54,22 +82,20 @@ const ListTest = ({ data, courses }) => {
         });
     }
 
-    const handleRowsPerPageChange = useCallback(
-        (event) => {
-            setPage(0);
-            setRowsPerPage(event.target.value);
+    const handleRowsPerPageChange = (event) => {
+        setPage(0);
+        const rows = event.target.value;
+        setRowsPerPage(rows);
 
-            let endIndex = rowsPerPage;
-            if (tests.length < endIndex) endIndex = tests.length;
+        let endIndex = rows;
+        if (tests.length < endIndex) endIndex = tests.length;
+        // console.log(tests.length);
 
-
-            setTestsPagination(tests.slice(0, endIndex))
-        },
-        []
-    );
+        setTestsPagination(tests.slice(0, endIndex));
+    }
 
     React.useEffect(() => {
-        const result = data.filter((test) => test.name.toLowerCase().includes(searchTerm.value.toLowerCase()));
+        const result = data.filter((test) => test.test_name.toLowerCase().includes(searchTerm.value.toLowerCase()));
         setTests(result);
         setPage(0);
         setRowsPerPage(5);
@@ -90,6 +116,37 @@ const ListTest = ({ data, courses }) => {
             value: ''
         });
     }
+
+    const handleSubmit = () => {
+
+        if (values.test_name.trim() === '') {
+            toast.warning("Chưa nhập tên bài kiểm tra");
+            return;
+        }
+
+        if (values.duration === 0) {
+            toast.warning("Chưa nhập thời gian");
+            return;
+        }
+
+        if (values.course_id === 0) {
+            toast.warning("Chưa chọn khóa học");
+            return;
+        }
+
+        if (values.chapter_id === 0) {
+            toast.warning("Chưa chọn chương");
+            return;
+        }
+
+        if (values.description.trim() === '') {
+            toast.warning("Chưa nhập mô tả");
+            return;
+        }
+
+        dispatch(insertTest(values));
+        setIsOpenModal(false);
+    }
     return (
         <>
 
@@ -102,7 +159,7 @@ const ListTest = ({ data, courses }) => {
                 }}
             >
                 <Container maxWidth="xl">
-                    <Stack spacing={3} sx={{ mt: 3 }}>
+                    <Stack spacing={2} sx={{ mt: 2 }}>
                         <Card sx={{ p: 2, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;" }}>
                             <div className='flex flex-row justify-between' >
                                 <Stack direction={"row"} spacing={2}>
@@ -130,9 +187,6 @@ const ListTest = ({ data, courses }) => {
                             onRowsPerPageChange={handleRowsPerPageChange}
                             page={page}
                             rowsPerPage={rowsPerPage}
-                            setIsOpenModal={setIsOpenModal}
-                            isOpenModal={isOpenModal}
-                            setCurrentTest={setCurrentTest}
                         /> : <>
 
                             <Card sx={{ p: 2, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;", height: 525 }}>
@@ -152,34 +206,38 @@ const ListTest = ({ data, courses }) => {
 
             <Dialog maxWidth="lg" fullWidth open={isOpenModal} onClose={handleCloseModal}>
                 <DialogTitle >Thêm mới bài kiểm tra</DialogTitle>
-                <DialogContent sx={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;', p: 0, pb: 2, height: 400, width: "100%" }} dividers>
+                <DialogContent sx={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;', p: 0, pb: 2, height: 480, width: "100%" }} dividers>
                     <Stack spacing={3} sx={{ p: 3 }} direction={"row"}>
 
-                        <Card sx={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;', p: 0, width: "100%", height: 270 }} >
+                        <Card sx={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;', p: 0, width: "100%", height: 350 }} >
 
                             <CardContent  >
 
                                 <Stack direction={"column"} spacing={2}>
                                     <Stack direction={"row"} spacing={2}>
                                         <AppInput value={values.test_name} title={"test_name"} placeholder={"Tên bài kiểm tra"} handleChangeValue={handleChangeValue} />
+                                        <AppInputNumber value={values.duration} title={"duration"} placeholder={"Thời gian (phút)"} handleChangeValue={handleChangeValue} />
                                     </Stack>
                                     <Stack direction={"row"} spacing={2}>
-                                        <AppSelect value={values.course_id} data={courses}  title={"course_id"} display={"course_name"} placeholder={"Chọn khóa học"} handleChangeValue={handleChangeValue} />
+                                        <AppSelect value={values.course_id} data={courses} title={"course_id"} display={"course_name"} placeholder={"Chọn khóa học"} handleChangeValue={handleChangeValue} />
+                                        <AppSelect value={values.chapter_id} data={selectedCourse?.chapters} title={"chapter_id"} display={"chapter_name"} placeholder={"Chọn chương"} handleChangeValue={handleChangeValue} />
                                     </Stack>
                                     <AppTextArea height={"h-[180px]"} title={"description"} value={values.description} handleChangeValue={handleChangeValue} placeholder={"Mô tả bài kiểm tra"} />
                                 </Stack>
-
-
                             </CardContent>
                         </Card>
 
                     </Stack>
                     <div className='w-full  flex justify-end pr-6'>
-                        <Button variant="contained" sx={{ mr: 2 }} title='Hủy' className='bg-cteal' onClick={handleCloseModal}>
-                            Hủy
+                        <Button variant="contained" sx={{ mr: 2, width: 150 }} title='Hủy' color='error' onClick={handleCloseModal}>
+                            <SvgIcon className='mr-1' >
+                                <XMarkIcon />
+                            </SvgIcon> Hủy
                         </Button>
-                        <Button variant="contained" title={currentTest?.email != null ? 'Gửi phản hồi tới ' + currentTest?.email : 'Gửi phản hồi'} className='bg-primary'>
-                            Gửi
+                        <Button onClick={handleSubmit} variant="contained" sx={{ width: 150 }} className='bg-primary'>
+                            <SvgIcon className='mr-1' >
+                                <HandThumbUpIcon />
+                            </SvgIcon> Gửi
                         </Button>
                     </div>
                 </DialogContent>

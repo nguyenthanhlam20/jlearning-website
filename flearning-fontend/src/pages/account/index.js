@@ -16,6 +16,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateInfo } from '../../redux/userSlice';
 import authenSlice from '../../redux/authenSlice';
 import { decryptToken } from '../../helpers/decryptToken';
+import AppInputNumber from '../../components/AppInput/AppInputNumber';
+import AppTextArea from '../../components/AppInput/AppTextArea';
+import AppInputPhone from '../../components/AppInput/AppInputPhone';
 
 
 
@@ -114,7 +117,7 @@ const AccountPage = () => {
                     <Stack direction={"row"} spacing={2} className='w-full'>
 
                       <AppInput height={""} value={values.name} title={"name"} handleChangeValue={handleChangeValue} placeholder={"Tên đầy đủ"} />
-                      <AppInput height={""} value={values.phone} title={"phone"} handleChangeValue={handleChangeValue} placeholder={"Số điện thoại"} />
+                      <AppInputPhone value={values.phone} title={"phone"} handleChangeValue={handleChangeValue} placeholder={"Số điện thoại"} />
                     </Stack>
                     <Stack className='w-full' direction={"row"} spacing={2}>
                       <Chip sx={{ borderRadius: 1, height: 40, paddingLeft: "8px", justifyContent: "left" }} className='w-full' color='default' icon={<EmailIcon />} label={"Email: " + values.email} />
@@ -124,7 +127,7 @@ const AccountPage = () => {
                       <AppRadioButton value={values.gender} handleChangeValue={handleChangeValue} />
                     </Stack>
                     <Stack direction={"row"} spacing={2}>
-                      <AppInput height={"h-[76px]"} value={values.address} title={"address"} handleChangeValue={handleChangeValue} placeholder={"Địa chỉ"} />
+                      <AppTextArea height={"h-[120px]"} value={values.address} title={"address"} handleChangeValue={handleChangeValue} placeholder={"Địa chỉ"} />
 
                     </Stack>
                   </Stack>

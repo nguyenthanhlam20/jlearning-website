@@ -9,23 +9,33 @@ import { insertChapter, updateChapter } from "../../redux/chapterSlice";
 import { toast } from "react-toastify";
 import courseSlice from "../../redux/courseSlice";
 import { ACTION_TYPE } from "../../constants/constants";
+import AppTextArea from "../AppInput/AppTextArea";
 
 const CourseChapterModal = ({
     isOpenModal,
     courseId,
     currentChapter,
+    setCurrentChapter,
     actionTypeChapter,
     handleCloseModal
 }) => {
     const { setIsRefreshSpecific } = courseSlice.actions;
     const dispatch = useDispatch();
-    const [values, setValues] = React.useState(currentChapter === null || currentChapter === undefined ? {
+    const [values, setValues] = React.useState({
         chapter_name: '',
         description: '',
         course_id: courseId,
-    } : currentChapter);
+    });
 
-    console.log("values: ", currentChapter);
+
+    React.useEffect(() => {
+        setValues(prevValues => ({
+            ...prevValues,
+            course_id: courseId
+        }));
+    }, [courseId])
+
+    // console.log("chapter: ", currentChapter);
     // window.alert(values.course_id);
 
     const handleChangeValue = (key, value) => {
@@ -34,6 +44,24 @@ const CourseChapterModal = ({
             [key]: value
         }));
     };
+    React.useEffect(() => {
+        if (currentChapter !== null && currentChapter !== undefined) {
+            setValues(currentChapter);
+        }
+    }, [currentChapter])
+
+
+
+    React.useEffect(() => {
+        if (isOpenModal === false) {
+            setValues({
+                chapter_name: '',
+                description: '',
+                course_id: courseId,
+            });
+            setCurrentChapter(null);
+        }
+    }, [isOpenModal])
 
     const onSubmit = () => {
         if (values.chapter_name === '' || values.description === '') {
@@ -64,7 +92,8 @@ const CourseChapterModal = ({
                             title={'chapter_name'}
                             handleChangeValue={handleChangeValue}
                             placeholder={"Nhập tên chương"} />
-                        <AppInput
+                        <AppTextArea
+                            height={"h-[200px]"}
                             value={values.description}
                             title={'description'}
                             handleChangeValue={handleChangeValue}

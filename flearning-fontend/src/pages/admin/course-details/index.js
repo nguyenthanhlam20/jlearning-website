@@ -26,7 +26,7 @@ const AdminCourseDetailsPage = () => {
     React.useEffect(() => {
         dispatch(getCourseById({course_id: course_id}));
     }, [isRefreshSpecific])
-
+console.log(course);
     return <>
         <AdminCourseDetails course={course} />
     </>

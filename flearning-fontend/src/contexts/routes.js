@@ -22,12 +22,20 @@ import AdminFeedbackPage from "../pages/admin/feedback";
 import AdminSupportPage from "../pages/admin/support";
 import SettingPage from "../pages/admin/settings";
 import AdminTestPage from "../pages/admin/test";
+import AdminTestDetailsPage from "../pages/admin/test-details";
+import ChangePasswordPage from "../pages/change-password";
 
 export const routes = [
   {
     path: ROUTE_CONSTANTS.HOME_PAGE,
     isPrivate: false,
     component: <HomePage />,
+    exact: true,
+  },
+  {
+    path: ROUTE_CONSTANTS.CHANGE_PASSWORD_PAGE,
+    isPrivate: false,
+    component: <ChangePasswordPage />,
     exact: true,
   },
   {
@@ -40,6 +48,12 @@ export const routes = [
     path: ROUTE_CONSTANTS.ADMIN_TEST_PAGE,
     isPrivate: false,
     component: <AdminTestPage />,
+    exact: true,
+  },
+  {
+    path: ROUTE_CONSTANTS.ADMIN_TEST_DETAILS,
+    isPrivate: false,
+    component: <AdminTestDetailsPage />,
     exact: true,
   },
   {

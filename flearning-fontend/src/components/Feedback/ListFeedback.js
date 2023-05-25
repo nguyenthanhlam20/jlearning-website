@@ -1,12 +1,9 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import {
-    Box, Button, CardContent, Card, Container, Stack, Dialog, DialogTitle
-    , DialogContent, Divider, CardHeader, SvgIcon
+    Box, Button, CardContent, Card, Container, Stack
 } from '@mui/material';
-import { applyPagination } from '../../utils/apply-pagination';
 import { FeedbackTable } from '../../sections/table/feedback-table';
 import AppInput from '../../components/AppInput/AppInput';
-import AppTextArea from '../AppInput/AppTextArea';
 
 
 const ListFeedback = ({ data }) => {
@@ -16,9 +13,6 @@ const ListFeedback = ({ data }) => {
 
     const [feedbacksPagination, setFeedbacksPagination] = useState(feedbacks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const [currentFeedback, setCurrentFeedback] = useState();
-    const [requestMessage, setRequestMessage] = useState("");
-    const [responseMessage, setResponseMessage] = useState("");
     const [searchTerm, setSearchTerm] = React.useState({ value: '' });
 
 
@@ -34,9 +28,7 @@ const ListFeedback = ({ data }) => {
         []
     );
 
-    const handleChangeValue = (value) => {
-        setResponseMessage(value);
-    }
+
     const handleChangeSearchTerm = (key, value) => {
 
         setSearchTerm({
@@ -88,7 +80,7 @@ const ListFeedback = ({ data }) => {
                 }}
             >
                 <Container maxWidth="xl">
-                    <Stack spacing={3} sx={{ mt: 3 }}>
+                    <Stack spacing={2} sx={{ mt: 2 }}>
                         <Card sx={{ p: 2, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;" }}>
                             <Stack direction={"row"} spacing={2}>
                                 <div className="w-96 ">
@@ -108,9 +100,6 @@ const ListFeedback = ({ data }) => {
                             onRowsPerPageChange={handleRowsPerPageChange}
                             page={page}
                             rowsPerPage={rowsPerPage}
-                            setIsOpenModal={setIsOpenModal}
-                            isOpenModal={isOpenModal}
-                            setCurrentFeedback={setCurrentFeedback}
                         /> : <>
 
                             <Card sx={{ p: 2, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;", height: 525 }}>

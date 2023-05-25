@@ -27,9 +27,20 @@ const ListSupport = ({ data }) => {
         message: '',
     })
 
-    // console.log(data);
+    React.useEffect(() => {
+        if (isOpenModal === false) {
+            setValues({
+                support_name: '',
+                message: '',
+            });
+        }
+    }, [isOpenModal])
 
- 
+    // console.log(data);
+    React.useEffect(() => {
+        setSupports(data);
+        setSupportsPagination(data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+    }, [data]);
 
     const dispatch = useDispatch();
 
@@ -37,14 +48,10 @@ const ListSupport = ({ data }) => {
         setIsOpenModal(false);
     }
 
-    const handlePageChange = useCallback(
-        (value) => {
-            setPage(value);
-            setSupportsPagination(supports.slice(value * rowsPerPage, value * rowsPerPage + rowsPerPage))
-        },
-        []
-    );
-
+    const handlePageChange = (value) => {
+        setPage(value);
+        setSupportsPagination(supports.slice(value * rowsPerPage, value * rowsPerPage + rowsPerPage));
+    }
 
     const handleChangeValue = (key, value) => {
         setValues(prevValues => ({
@@ -61,20 +68,17 @@ const ListSupport = ({ data }) => {
         });
     }
 
-    const handleRowsPerPageChange = useCallback(
-        (event) => {
-            setPage(0);
-            setRowsPerPage(event.target.value);
+    const handleRowsPerPageChange = (event) => {
+        const rows = event.target.value;
+        setPage(0);
+        setRowsPerPage(rows);
 
-            let endIndex = rowsPerPage;
-            if (supports.length < endIndex) endIndex = supports.length;
+        let endIndex = rowsPerPage;
+        if (supports.length < endIndex) endIndex = supports.length;
 
 
-            setSupportsPagination(supports.slice(0, endIndex))
-        },
-        []
-    );
-
+        setSupportsPagination(supports.slice(0, endIndex));
+    }
     React.useEffect(() => {
         const result = data.filter((support) => support?.support_name.toLowerCase().includes(searchTerm.value.toLowerCase()));
         setSupports(result);
@@ -136,7 +140,7 @@ const ListSupport = ({ data }) => {
                 }}
             >
                 <Container maxWidth="xl">
-                    <Stack spacing={3} sx={{ mt: 3 }}>
+                    <Stack spacing={2} sx={{ mt: 2 }}>
                         <Card sx={{ p: 2, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;" }}>
                             <div className='flex flex-row justify-between'>
                                 <Stack direction={"row"} spacing={2}>
@@ -200,7 +204,7 @@ const ListSupport = ({ data }) => {
                                 <AppInput placeholder={"Tiêu đề"} value={values.support_name} title={"support_name"} handleChangeValue={handleChangeValue} />
                             </div>
                             <div className='h-[170px]' >
-                            <AppTextArea height={"h-[160px]"} value={values.message} title={"message"} handleChangeValue={handleChangeValue} placeholder={"Nội dung"} />
+                                <AppTextArea height={"h-[160px]"} value={values.message} title={"message"} handleChangeValue={handleChangeValue} placeholder={"Nội dung"} />
 
                             </div>
                             <div className='w-full flex justify-end'>

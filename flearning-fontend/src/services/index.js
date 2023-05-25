@@ -6,8 +6,8 @@ import feedbackServices from "./feedbackServices";
 import supportServices from "./supportServices";
 import lessonServices from "./lessonServices";
 import chapterServices from "./chapterServices";
-import quizServices from "./quizServices";
-import testServices from "./quizServices";
+import questionServices from "./questionServices";
+import testServices from "./testServices";
 
 
 export {
@@ -19,6 +19,6 @@ export {
     supportServices,
     lessonServices,
     chapterServices,
-    quizServices,
+    questionServices,
     testServices
 };

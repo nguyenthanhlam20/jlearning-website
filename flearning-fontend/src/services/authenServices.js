@@ -21,6 +21,11 @@ import axios from "axios";
     const response = await axios.post(API.AUTHEN.FORGOT_PASSWORD, email);
     return response.data;
   },
+  changePassword: async (user) => {
+    // console.log(user);
+    const response = await axios.post(API.AUTHEN.CHANGE_PASSWORD, user);
+    return response.data;
+  },
 };
 
 export default authenServices;
