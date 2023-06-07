@@ -1,2 +1,2 @@
-# JLearning
-Final project of PRN231 subject
+# JLearning-frontend
+Frontend project of PRN231 subject
