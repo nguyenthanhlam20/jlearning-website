@@ -1,0 +1,38 @@
+### Insert chapter 
+- Method: POST
+- URL: /api/chapter/insert
+- Request Body: 
+  {
+    course_id: int,
+    chapter_name: string, 
+    description: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### update chapter 
+- Method: POST
+- URL: /api/chapter/update
+- Request Body: 
+  {
+    chapter_id: int,
+    course_id: int,
+    chapter_name: string, 
+    description: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### delete chapter 
+- Method: POST
+- URL: /api/chapter/delete
+- Request Body: 
+  {
+    chapter_id: int,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()

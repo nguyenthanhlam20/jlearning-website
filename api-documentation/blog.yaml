@@ -1,0 +1,99 @@
+### Insert blog
+- Method: POST
+- URL: /api/blog/insert
+- Request Body: 
+  {
+    blog_category_id: int,
+    blog_name: string, 
+    blog_avatar_url: string, 
+    blog_description: string,
+    created_date: date,
+    status: bool
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### update blog 
+- Method: POST
+- URL: /api/blog/update
+- Request Body: 
+  {
+    blog_category_id: int,
+    blog_id: int,
+    blog_name: string, 
+    blog_avatar_url: string, 
+    blog_description: string,
+    created_date: date,
+    status: bool
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### delete blog 
+- Method: POST
+- URL: /api/blog/delete
+- Request Body: 
+  {
+    blog_id: int,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### get blogs
+- Method: GET
+- URL: /api/blog
+- Request Body: none
+- Response:
+  - Status code: 200 (OK)
+  - Response format: [
+    {
+      blog_id: int,
+      blog_name: string,
+      blog_avatar_url: string,
+      blog_category_id: int,
+      blog_description: string,
+      created_date: date,
+      status: bool,
+      blog_details: [
+        {
+          blog_details_id: int,
+          blog_id: int,
+          blog_img_url: string,
+          header: string,
+          description: string,
+        }
+      ]
+    }
+  ]
+
+
+### get blog by id
+- Method: POST
+- URL: /api/blog/get/by-id
+- Request Body: none
+- Response:
+  - Status code: {
+    blog_id: int
+  }
+  - Response format: {
+      blog_id: int,
+      blog_name: string,
+      blog_avatar_url: string,
+      blog_category_id: int,
+      blog_description: string,
+      created_date: date,
+      status: bool,
+      blog_details: [
+        {
+          blog_details_id: int,
+          blog_id: int,
+          blog_img_url: string,
+          header: string,
+          description: string,
+        }
+      ]
+    }

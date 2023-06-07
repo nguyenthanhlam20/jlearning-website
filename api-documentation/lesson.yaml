@@ -1,0 +1,70 @@
+### Insert lesson 
+- Method: POST
+- URL: /api/lesson/insert
+- Request Body: 
+  {
+    chapter_id: int,
+    lesson_name: string, 
+    description: string,
+    duration: int,
+    material_url: string,
+    video_url: string
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### Update lesson 
+- Method: POST
+- URL: /api/lesson/update
+- Request Body: 
+  {
+    lesson_id: int,
+    chapter_id: int,
+    lesson_name: string, 
+    description: string,
+    duration: int,
+    material_url: string,
+    video_url: string
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### Delete lesson 
+- Method: POST
+- URL: /api/lesson/delete
+- Request Body: 
+  {
+    lesson_id: int
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### insert lesson done
+- Method: POST
+- URL: /api/lesson/insert/lesson-done
+- Request Body: 
+  {
+    lesson_id: int,
+    course_id: int,
+    email: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### get lessons done
+- Method: POST
+- URL: /api/lesson/get/lesson-done
+- Request Body: 
+  {
+    course_id: int,
+    email: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: [2, 4, 5, 2, ...] an arry of lesson_id

@@ -1,0 +1,50 @@
+### Insert question
+- Method: POST
+- URL: /api/question/insert
+- Request Body: 
+  {
+    test_id: int,
+    answer_1: string,
+    answer_2: string,
+    answer_3: string,
+    answer_4: string,
+    description: string,
+    explaination: string,
+    correct_answer: int
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### Update question
+- Method: POST
+- URL: /api/question/update
+- Request Body: 
+  {
+    question_id: int,
+    test_id: int,
+    answer_1: string,
+    answer_2: string,
+    answer_3: string,
+    answer_4: string,
+    description: string,
+    explaination: string,
+    correct_answer: int
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### Delete question
+- Method: POST
+- URL: /api/question/delete
+- Request Body: 
+  {
+    question_id: int,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+

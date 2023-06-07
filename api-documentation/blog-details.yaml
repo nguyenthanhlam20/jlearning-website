@@ -1,0 +1,40 @@
+### Insert blog-details 
+- Method: POST
+- URL: /api/blog-details/insert
+- Request Body: 
+  {
+    blog_id: int,
+    blog_img_url: string, 
+    header: string, 
+    description: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### update blog-details 
+- Method: POST
+- URL: /api/blog-details/update
+- Request Body: 
+  {
+    blog_details_id: int,
+    blog_id: int,
+    blog_img_url: string, 
+    header: string, 
+    description: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### delete blog-details 
+- Method: POST
+- URL: /api/blog-details/delete
+- Request Body: 
+  {
+   blog_details_id: int
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()

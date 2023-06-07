@@ -1,0 +1,18 @@
+
+
+- Method: POST
+- URL: /api/account/update-info
+- Request Body: 
+  {
+    name: string,
+    email: string, 
+    gender: int, 
+    phone: string, 
+    address: string, 
+    avatar_url: string, 
+    year_of_birth: int, 
+
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()

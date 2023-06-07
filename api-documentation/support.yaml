@@ -1,0 +1,56 @@
+### Insert support
+- Method: POST
+- URL: /api/support/insert
+- Request Body: 
+  {
+    support_name: string,
+    message: string
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### Update support
+- Method: POST
+- URL: /api/support/update
+- Request Body: 
+  {
+    support_id: int,
+    support_name: string,
+    message: string
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### Delete support
+- Method: POST
+- URL: /api/support/delete
+- Request Body: 
+  {
+    support_id: int,
+    support_name: string,
+    message: string
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### Get suppors
+- Method: GET
+- URL: /api/support
+- Request Body: none
+- Response:
+  - Status code: 200 (OK)
+  - Response format:  
+  [
+    {
+      support_id: int,
+      support_name: string,
+      message: string
+    }
+    ...
+ ]

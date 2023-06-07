@@ -1,0 +1,13 @@
+### update user info 
+- Method: GET
+- URL: /api/blog-category
+- Request Body: none
+- Response:
+  - Status code: 200 (OK)
+  - Response format: [
+    {
+      blog_category_id: int,
+      name: string
+    }
+  ]
+

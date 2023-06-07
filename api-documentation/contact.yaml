@@ -1,0 +1,53 @@
+### Insert contact 
+- Method: POST
+- URL: /api/contact/insert
+- Request Body: 
+  {
+    email: string, 
+    name: string,
+    request_date: date,
+    request_message: string,
+    status: bool,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### update contact 
+- Method: POST
+- URL: /api/contact/update
+- Request Body: 
+  {
+    subject: string,
+    contact_id: int,
+    email: string, 
+    name: string,
+    response_date: date,
+    request_message: string,
+    response_message: string,
+    status: bool,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### get contacts
+- Method: GET
+- URL: /api/contact
+- Request Body: none
+- Response:
+  - Status code: 200 (OK)
+  - Response format: [
+    {
+      contact_id: int,
+      email: string, 
+      name: string,
+      request_date: date,
+      response_date: date,
+      request_message: string,
+      response_message: string,
+      status: bool,
+    },
+    ...
+  ]

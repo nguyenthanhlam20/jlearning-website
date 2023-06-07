@@ -1,0 +1,270 @@
+Course Documentation
+
+### Insert course 
+- Method: POST
+- URL: /api/course/insert
+- Request Body: 
+  {
+    avatar_url: string,
+    course_name: string,
+    created_at: date,
+    description: string,
+    duration: int,
+    price: int,
+    status: bool,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### update course 
+- Method: POST
+- URL: /api/course/update
+- Request Body: 
+  {
+    avatar_url: string,
+    course_name: string,
+    created_at: date,
+    description: string,
+    duration: int,
+    price: int,
+    status: bool,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+  
+  
+### Get all courses
+- Method: POST
+- URL: /api/course
+- Request Body: none
+- Response:
+  - Status code: 200 (OK)
+  - Response format:
+    [
+      {
+        course_id: int,
+        course_name: string,
+        course_avatar_url: string,
+        created_at: string,
+        description: string,
+        duration: int,
+        price: int,
+        status: bool,
+        chapters: [
+          {
+              chapter_id: int,
+              chapter_name: string,
+              course_id: int,
+              description: string,
+              lessons: [
+                {
+                  lesson_id: int,
+                  lesson_name: string,
+                  material_url: string,
+                  video_url: string,
+                  duration: string,
+                  chapter_id: int,
+                  duration: int,
+                },
+                {
+                  lesson_id: int,
+                  lesson_name: string,
+                  material_url: string,
+                  video_url: string,
+                  duration: string,
+                  chapter_id: int,
+                  duration: int,
+                }
+              ],
+              tests: [
+                {
+                  test_id: int,
+                  test_name: string,
+                  chapter_id: int,
+                  course_id: int,
+                  description: string,
+                  duration: int,
+                  questions: [
+                    {
+                      question_id: int,
+                      test_id: int,
+                      answer_1: string,
+                      answer_2: string,
+                      answer_3: string,
+                      answer_4: string,
+                      description: string,
+                      explaination: string,
+                      correct_answer: int
+                    },
+                     {
+                      question_id: int,
+                      test_id: int,
+                      answer_1: string,
+                      answer_2: string,
+                      answer_3: string,
+                      answer_4: string,
+                      description: string,
+                      explaination: string,
+                      correct_answer: int
+                    }
+                  ]
+                }
+              ]
+          }
+        ]
+      },
+      {
+        course_id: int,
+        course_name: string,
+        course_avatar_url: string,
+        created_at: string,
+        description: string,
+        duration: int,
+        price: int,
+        status: bool,
+        chapters: [
+          {
+
+          }
+        ]
+      },
+      ....
+    ]
+  
+### Get course by id
+- Method: POST
+- URL: /api/course/get/by-id
+- Request Body: {
+  course_id: int,
+}
+- Response:
+  - Status code: 200 (OK)
+  - Response format:
+    [
+      {
+        course_id: int,
+        course_name: string,
+        course_avatar_url: string,
+        created_at: string,
+        description: string,
+        duration: int,
+        price: int,
+        status: bool,
+        chapters: [
+          {
+              chapter_id: int,
+              chapter_name: string,
+              course_id: int,
+              description: string,
+              lessons: [
+                {
+                  lesson_id: int,
+                  lesson_name: string,
+                  material_url: string,
+                  video_url: string,
+                  duration: string,
+                  chapter_id: int,
+                  duration: int,
+                },
+                {
+                  lesson_id: int,
+                  lesson_name: string,
+                  material_url: string,
+                  video_url: string,
+                  duration: string,
+                  chapter_id: int,
+                  duration: int,
+                }
+              ],
+              tests: [
+                {
+                  test_id: int,
+                  test_name: string,
+                  chapter_id: int,
+                  course_id: int,
+                  description: string,
+                  duration: int,
+                  questions: [
+                    {
+                      question_id: int,
+                      test_id: int,
+                      answer_1: string,
+                      answer_2: string,
+                      answer_3: string,
+                      answer_4: string,
+                      description: string,
+                      explaination: string,
+                      correct_answer: int
+                    },
+                     {
+                      question_id: int,
+                      test_id: int,
+                      answer_1: string,
+                      answer_2: string,
+                      answer_3: string,
+                      answer_4: string,
+                      description: string,
+                      explaination: string,
+                      correct_answer: int
+                    }
+                  ]
+                }
+              ]
+          }
+        ]
+      },
+      {
+        course_id: int,
+        course_name: string,
+        course_avatar_url: string,
+        created_at: string,
+        description: string,
+        duration: int,
+        price: int,
+        status: bool,
+        chapters: [
+          {
+
+          }
+        ]
+      },
+      ....
+    ]
+  
+
+### Get user courses
+- Method: POST
+- URL: /api/course/get/user-courses
+- Request Body: {
+  email: string,
+ }
+- Response:
+  - Status code: 200 (OK)
+  - Response format:
+  [
+    {
+      course_avatar_url: string,
+      course_id: int,
+      course_name: string,
+      created_at: date,
+      description: string,
+      duration: int,
+      price: int,
+      status: bool,
+    }
+  ]
+
+
+### Get insert user course
+- Method: POST
+- URL: /api/course/insert/user-course
+- Request Body: {
+  course_id: int,
+  email: string,
+  enrolled_date: date,
+ }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()

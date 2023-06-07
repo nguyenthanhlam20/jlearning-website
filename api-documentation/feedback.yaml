@@ -1,0 +1,48 @@
+### Insert feedback 
+- Method: POST
+- URL: /api/feedback/insert
+- Request Body: 
+  {
+    course_id: int,
+    course_name: string, 
+    email: string, 
+    message: string, 
+    name: string, 
+    star: string,
+    user_avatar_url: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+
+### update feedback 
+- Method: POST
+- URL: /api/feedback/update
+- Request Body: 
+  {
+    feedback_id: int,
+    course_id: int,
+    course_name: string, 
+    email: string, 
+    message: string, 
+    name: string, 
+    star: string,
+    user_avatar_url: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+  
+### get feedback by id
+- Method: POST
+- URL: /api/feedback/get/by-id
+- Request Body: 
+  {
+    course_id: int,
+    email: string, 
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+

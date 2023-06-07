@@ -1,0 +1,156 @@
+### Insert test
+- Method: POST
+- URL: /api/test/insert
+- Request Body: 
+  {
+    chapter_id: int,
+    test_name: string,
+    course_id: int,
+    description: string,
+    duration: int,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### Update test
+- Method: POST
+- URL: /api/test/update
+- Request Body: 
+  {
+    test_id: int,
+    test_name: string,
+    chapter_id: int,
+    course_id: int,
+    description: string,
+    duration: int,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### Delete test
+- Method: POST
+- URL: /api/test/delete
+- Request Body: 
+  {
+    test_id: int,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### Get tests
+- Method: GET
+- URL: /api/test
+- Request Body: none
+- Response:
+  - Status code: 200 (OK)
+  - Response format:  [
+    {
+      test_id: int,
+      test_name: string,
+      chapter_id: int,
+      chapter_name: string,
+      course_id: int,
+      course_name: string,
+      description: string,
+      duration: int,
+      questions: [
+        {
+          question_id: int,
+          test_id: int,
+          answer_1: string,
+          answer_2: string,
+          answer_3: string,
+          answer_4: string,
+          description: string,
+          explaination: string,
+          correct_answer: int
+        },
+          {
+          question_id: int,
+          test_id: int,
+          answer_1: string,
+          answer_2: string,
+          answer_3: string,
+          answer_4: string,
+          description: string,
+          explaination: string,
+          correct_answer: int
+        }
+      ]
+    }
+  ]
+
+### Get test by id
+- Method: POST
+- URL: /api/test/get/by-id
+- Request Body: 
+  {
+    test_id: int,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: [
+    {
+      test_id: int,
+      test_name: string,
+      chapter_id: int,
+      chapter_name: string,
+      course_id: int,
+      course_name: string,
+      description: string,
+      duration: int,
+      questions: [
+        {
+          question_id: int,
+          test_id: int,
+          answer_1: string,
+          answer_2: string,
+          answer_3: string,
+          answer_4: string,
+          description: string,
+          explaination: string,
+          correct_answer: int
+        },
+          {
+          question_id: int,
+          test_id: int,
+          answer_1: string,
+          answer_2: string,
+          answer_3: string,
+          answer_4: string,
+          description: string,
+          explaination: string,
+          correct_answer: int
+        }
+      ]
+    }
+  ]
+
+
+### insert test done
+- Method: POST
+- URL: /api/test/insert/test-done
+- Request Body: 
+  {
+    test_id: int,
+    course_id: int,
+    email: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: Ok()
+
+### get tests done
+- Method: POST
+- URL: /api/test/get/test-done
+- Request Body: 
+  {
+    course_id: int,
+    email: string,
+  }
+- Response:
+  - Status code: 200 (OK)
+  - Response format: [2, 4, 5, 2, ...] an arry of test_id
