@@ -50,29 +50,7 @@ const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getLessonsDone({ email: user?.email, course_id: course.course_id }));
     dispatch(getTestsDone({ email: user?.email, course_id: course.course_id }));
-  }, [])
-
-
-  
-
-
-  const getProgress = () => {
-    let totalProgress = 0;
-
-    const chapters = course?.chapters;
-    for (let i = 0; i < chapters?.length; i++) {
-      totalProgress += chapters[i]?.lessons.length;
-    }
-
-    if(course?.tests) {
-      totalProgress += course?.tests?.length;
-    }
-
-    const currentProgress = lessonsDone.length + testsDone.length;
-
-// console.log(course);
-    return Math.floor(currentProgress / totalProgress);
-  }
+  }, []);
 
 
   const isBought = ((courseFound !== null && courseFound !== undefined) || course.price === 0) ? true : false;

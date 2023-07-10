@@ -17,7 +17,7 @@ namespace DataAccess
                     return ac;
                 }
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
                 return null;
@@ -62,6 +62,26 @@ namespace DataAccess
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+        public static bool ChangePassword(Account a)
+        {
+            bool status = false;
+            try
+            {
+                using (var context = new JlearningContext())
+                {
+                    context.Entry<Account>(a).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    if (context.SaveChanges() > 0)
+                    {
+                        status = true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            return status;
         }
         public static Account FindAccountByEmail(string email)
         {

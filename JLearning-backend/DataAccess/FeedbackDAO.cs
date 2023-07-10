@@ -9,9 +9,9 @@ namespace DataAccess
 {
     public class FeedBackDAO
     {
-        public static Feedback FindFeedBackById(int courseId, string email)
+        public static Feedback FindFeedBackById(int? courseId, string email)
         {
-            Feedback fb = new Feedback();
+            Feedback fb = null;
             try
             {
                 using (var context = new JlearningContext())

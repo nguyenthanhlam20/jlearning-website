@@ -12,7 +12,7 @@ namespace Reporitories
     {
         public void CreateFeedback(Feedback fb) => FeedBackDAO.CreateFeedback(fb);
 
-        public Feedback FindFeedBackById(int courseId, string email) => FeedBackDAO.FindFeedBackById(courseId, email);
+        public Feedback FindFeedBackById(int? courseId, string email) => FeedBackDAO.FindFeedBackById(courseId, email);
 
         public void UpdateFeedback(Feedback fb) => FeedBackDAO.UpdateFeedback(fb);
     }

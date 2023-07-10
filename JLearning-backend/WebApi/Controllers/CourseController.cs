@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         }
         // GET: api/<CourseController>
         [HttpGet("get")]
-        public ActionResult<IEnumerable<CourseDTO>> Get()
+        public ActionResult<IEnumerable<CourseDTO>> GetCourses()
         {
             IEnumerable<Course> courses = repository.GetCourses();
             IEnumerable<CourseDTO> courseDTOs = _mapper.Map<IEnumerable<CourseDTO>>(courses);
@@ -34,7 +34,7 @@ namespace WebApi.Controllers
 
         // GET api/<BlogController>/5
         [HttpPost("get/by-id")]
-        public ActionResult Get(GetCourseDTO getCourseDTO)
+        public ActionResult GetCourseById(GetCourseDTO getCourseDTO)
         {
             Console.WriteLine("Get course by id: " + getCourseDTO.CourseId);
             var course = repository.FindCourseById(getCourseDTO.CourseId);
@@ -44,7 +44,7 @@ namespace WebApi.Controllers
 
         // POST api/<CourseController>
         [HttpPost("insert")]
-        public ActionResult Post(InsertCourseDTO courseDTO)
+        public ActionResult InsertCourse(InsertCourseDTO courseDTO)
         {
                 Course course = _mapper.Map<Course>(courseDTO);
                 repository.CreateCourse(course);
@@ -53,7 +53,7 @@ namespace WebApi.Controllers
 
         // PUT api/<CourseController>/5
         [HttpPut("update")]
-        public ActionResult Put(UpdateCourseDTO courseDTO)
+        public ActionResult UpdateCourse(UpdateCourseDTO courseDTO)
         {
             Console.WriteLine("update course by id: " + courseDTO.CourseId);
             Course cours = _mapper.Map<Course>(courseDTO);
@@ -62,15 +62,16 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("get/user-courses")]
-        public ActionResult<IEnumerable<CourseDTO>> GetCourse(string email)
+        public ActionResult<IEnumerable<CourseDTO>> GetUserCourses([FromBody] AccountDTO accountDTO)
         {
-            IEnumerable<Course> courses = repository.FindCoursesByEmail(email);
+            IEnumerable<Course> courses = repository.FindCoursesByEmail(accountDTO.Email);
             IEnumerable<CourseDTO> courseDTOs = _mapper.Map<IEnumerable<CourseDTO>>(courses);
+            Console.WriteLine("Number of course: " + courseDTOs.Count());
             return Ok(courseDTOs);
         }
 
         [HttpPost("insert/user-course")]
-        public ActionResult PostUserCourse(UserCourseDTO userCourseDTO)
+        public ActionResult InsertUserCourse(UserCourseDTO userCourseDTO)
         {
             UserCourse userCourse = _mapper.Map<UserCourse>(userCourseDTO);
             repository.CreateUserCourse(userCourse);

@@ -59,7 +59,7 @@ namespace WebApi.Controllers
             }
         }
         [HttpPost("insert/lesson-done")]
-        public ActionResult PostLessonDone([FromBody][Bind("lesson_id,email,course_id")] LessonDoneDTO lessonDoneDTO)
+        public ActionResult InsertLessonDone([FromBody] LessonDoneDTO lessonDoneDTO)
         {
             var checkLessonDone = repositoryLessonDone
                 .FindLessonDone((int)lessonDoneDTO.CourseId, lessonDoneDTO.Email, (int)lessonDoneDTO.LessonId);
@@ -73,9 +73,10 @@ namespace WebApi.Controllers
             return Ok();
         }
         [HttpPost("get/lesson-done")]
-        public ActionResult<ArrayList> GetLessonDone([FromBody][Bind("course_id,email")] LessonDoneDTO lessonDoneDTO)
+        public ActionResult<ArrayList> GetLessonDones([FromBody] LessonDoneDTO lessonDoneDTO)
         {
-                ArrayList lessID = repositoryLessonDone.GetLessonDones((int)lessonDoneDTO.CourseId, lessonDoneDTO.Email);
+                ArrayList lessID = repositoryLessonDone.GetLessonDones((int)lessonDoneDTO.CourseId, 
+                    lessonDoneDTO.Email);
                 return Ok(lessID);
         }
     }

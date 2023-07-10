@@ -65,7 +65,7 @@ namespace WebApi.Controllers
 
         // POST api/<TestController>
         [HttpPost("insert")]
-        public ActionResult Post(InsertTestDTO testDTO)
+        public ActionResult InsertTest(InsertTestDTO testDTO)
         {
                 Test test = _mapper.Map<Test>(testDTO);
                 repository.CreateTest(test);
@@ -74,7 +74,7 @@ namespace WebApi.Controllers
 
         // PUT api/<TestController>/5
         [HttpPost("update")]
-        public ActionResult Put(UpdateTestDTO testDTO)
+        public ActionResult UpdateTest(UpdateTestDTO testDTO)
         {
             var test = repository.FindTestById((int)testDTO.TestId);
             if (test == null) return NotFound();
@@ -96,7 +96,7 @@ namespace WebApi.Controllers
             }
         }
         [HttpPost("insert/test-done")]
-        public ActionResult PostTestDone( TestDoneDTO testDoneDTO)
+        public ActionResult InsertTestDone([FromBody] TestDoneDTO testDoneDTO)
         {
             var checkTestDone = repositoryTestDone.GetTestDone((int)testDoneDTO.CourseId, testDoneDTO.Email, (int)testDoneDTO.TestId);
             if (checkTestDone == null)
@@ -108,7 +108,7 @@ namespace WebApi.Controllers
             return Ok();
         }
         [HttpPost("get/test-done")]
-        public ActionResult<ArrayList> GetTestDone(TestDoneDTO testDoneDTO)
+        public ActionResult<ArrayList> GetTestDones([FromBody]TestDoneDTO testDoneDTO)
         {
                 ArrayList testID = repositoryTestDone.GetTestDones((int)testDoneDTO.CourseId,testDoneDTO.Email);
                 return Ok(testID);

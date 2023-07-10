@@ -53,6 +53,11 @@ const feedbackSlice = createSlice({
       // console.log(action.payload);
       state.isRefresh = false;
     });
+    builder.addCase(getFeedbackById.rejected, (state, action) => {
+      state.specific = null;
+      // console.log(action.payload);
+      state.isRefresh = false;
+    });
   },
 });
 

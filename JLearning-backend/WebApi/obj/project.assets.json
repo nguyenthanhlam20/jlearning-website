@@ -3368,11 +3368,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ADMIN\\Downloads\\JLearningBE-main\\JLearningBE-main\\JLearning\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\ADMIN\\Documents\\Jlearning\\JLearning-backend\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\ADMIN\\Downloads\\JLearningBE-main\\JLearningBE-main\\JLearning\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\ADMIN\\Documents\\Jlearning\\JLearning-backend\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ADMIN\\Downloads\\JLearningBE-main\\JLearningBE-main\\JLearning\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\ADMIN\\Documents\\Jlearning\\JLearning-backend\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3393,11 +3393,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\ADMIN\\Downloads\\JLearningBE-main\\JLearningBE-main\\JLearning\\BusinessObjects\\BusinessObjects.csproj": {
-              "projectPath": "C:\\Users\\ADMIN\\Downloads\\JLearningBE-main\\JLearningBE-main\\JLearning\\BusinessObjects\\BusinessObjects.csproj"
+            "C:\\Users\\ADMIN\\Documents\\Jlearning\\JLearning-backend\\BusinessObjects\\BusinessObjects.csproj": {
+              "projectPath": "C:\\Users\\ADMIN\\Documents\\Jlearning\\JLearning-backend\\BusinessObjects\\BusinessObjects.csproj"
             },
-            "C:\\Users\\ADMIN\\Downloads\\JLearningBE-main\\JLearningBE-main\\JLearning\\Reporitories\\Reporitories.csproj": {
-              "projectPath": "C:\\Users\\ADMIN\\Downloads\\JLearningBE-main\\JLearningBE-main\\JLearning\\Reporitories\\Reporitories.csproj"
+            "C:\\Users\\ADMIN\\Documents\\Jlearning\\JLearning-backend\\Reporitories\\Reporitories.csproj": {
+              "projectPath": "C:\\Users\\ADMIN\\Documents\\Jlearning\\JLearning-backend\\Reporitories\\Reporitories.csproj"
             }
           }
         }

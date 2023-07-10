@@ -25,7 +25,7 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("signin")]
-        public IActionResult SignIn(GetAccountDTO account)
+        public IActionResult SignIn([FromBody] AccountDTO account)
         {
             // Map dto to account
             Account acc = _mapper.Map<Account>(account);
@@ -47,10 +47,10 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("signup")]
-        public IActionResult SignUp(InsertAccountDTO account)
+        public IActionResult SignUp([FromBody] AccountDTO accountDTO)
         {
             // Map dto to account
-            Account acc = _mapper.Map<Account>(account);
+            Account acc = _mapper.Map<Account>(accountDTO);
             bool status = repository.SignUp(acc);
 
             Console.Write(status);
@@ -61,8 +61,27 @@ namespace WebApi.Controllers
 
             return Unauthorized();
         }
-        [HttpPost("update-info")]
-        public ActionResult UpdateInfo([FromBody] UpdateAccountDTO accountDTO)
+
+        [HttpPost]
+        [Route("change-password")]
+        public IActionResult ChangePassword([FromBody] AccountDTO accountDTO)
+        {
+            // Map dto to account
+            Account account = repository.FindAccountByEmail(accountDTO.Email);
+            account.Password = accountDTO.Password;
+
+            bool status = repository.ChangePassword(account);
+
+            Console.Write(status);
+            if (status == true)
+            {
+                return Ok();
+            }
+
+            return Unauthorized();
+        }
+        [HttpPut("update-info")]
+        public ActionResult UpdateInfo([FromBody] AccountDTO accountDTO)
         {
             var account = repository.FindAccountByEmail(accountDTO.Email);
             if (account == null) return NotFound();

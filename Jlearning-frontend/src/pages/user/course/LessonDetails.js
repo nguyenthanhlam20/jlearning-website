@@ -31,6 +31,11 @@ import AppTextArea from "../../../components/AppInput/AppTextArea";
 import RatingStar from "../../../components/Star";
 import { insertFeedback, updateFeedback } from "../../../redux/feedbackSlice";
 import { toast } from "react-toastify";
+import { getCourseById } from "../../../redux/courseSlice";
+import { getLessonsDone } from "../../../redux/lessonSlice";
+import { getTestsDone } from "../../../redux/testSlice";
+import SmoothScrollUp from "../../../components/Common/SmoothScrollUp";
+import { getFeedbackById } from "../../../redux/feedbackSlice";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -97,7 +102,29 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 
-const LessonDetails = ({ course, lessonsDone, testsDone, user, feedback }) => {
+const LessonDetails = ({ course, user }) => {
+    const feedback = useSelector((state) => state.feedback.specific);
+    const lessonsDone = useSelector((state) => state.lesson.lessons_done);
+    const testsDone = useSelector((state) => state.test.tests_done);
+
+    const isRefreshL = useSelector((state) => state.lesson.isRefresh);
+    const isRefreshT = useSelector((state) => state.test.isRefreshSpecific);
+
+    React.useEffect(() => {
+        dispatch(getFeedbackById({ course_id: course.course_id, email: user?.email }));
+        dispatch(getLessonsDone({ email: user?.email, course_id: course.course_id }));
+        dispatch(getTestsDone({ email: user?.email, course_id: course.course_id }));
+    }, []);
+
+    React.useEffect(() => {
+        if (isRefreshL === true || isRefreshT == true) {
+            dispatch(getLessonsDone({ email: user?.email, course_id: course.course_id }));
+            dispatch(getTestsDone({ email: user?.email, course_id: course.course_id }));
+        }
+    }, [isRefreshL, isRefreshT]);
+
+ 
+
     const dispatch = useDispatch();
     const [expanded, setExpanded] = React.useState('panel1');
     const [currentLesson, setCurrentLesson] = React.useState(course?.chapters[0]?.lessons[0]);
@@ -130,8 +157,8 @@ const LessonDetails = ({ course, lessonsDone, testsDone, user, feedback }) => {
             user_avatar_url: user?.avatar_url,
             course_name: course?.course_name,
             course_id: course?.course_id,
-            message: feedback === '' ? '' : feedback?.message,
-            star: feedback === '' ? 0 : feedback?.star,
+            message: feedback === null ? '' : feedback?.message,
+            star: feedback === null ? 0 : feedback?.star,
         })
     }, [feedback, course])
 
@@ -241,7 +268,7 @@ const LessonDetails = ({ course, lessonsDone, testsDone, user, feedback }) => {
         window.open(url, '_blank');
     }
 
-    console.log("feedback: ", feedbackValues);
+    // console.log("feedback: ", feedbackValues);
 
     const handleTestDone = () => {
         if (user && !testsDone.includes(currentTest?.test_id)) {
@@ -257,7 +284,7 @@ const LessonDetails = ({ course, lessonsDone, testsDone, user, feedback }) => {
             return;
         }
 
-        if (feedback === '') {
+        if (feedback === null || feedback == undefined) {
             dispatch(insertFeedback(feedbackValues));
         } else {
             dispatch(updateFeedback(feedbackValues));
@@ -349,7 +376,7 @@ const LessonDetails = ({ course, lessonsDone, testsDone, user, feedback }) => {
                                     <Stack direction={"column"} spacing={2} sx={{ width: "100%" }}>
                                         {courses.map((c, key) => {
                                             return <RelatedCourse
-                                                key={key}
+                                                key={"courses-" + key}
                                                 image={c.course_avatar_url}
                                                 title={c.course_name}
                                                 price={c.price}
@@ -374,7 +401,7 @@ const LessonDetails = ({ course, lessonsDone, testsDone, user, feedback }) => {
                                                     <SvgIcon sx={{ mr: 1 }}>
                                                         <HandThumbUpIcon />
                                                     </SvgIcon>
-                                                    {feedback !== null && feedback !== undefined && feedback !== '' ? "Cập nhật" : "Gửi"}
+                                                    {feedback !== null || feedback !== undefined || feedback !== '' ? "Cập nhật" : "Gửi"}
                                                 </Button>
                                             </div>
                                         </CardContent>
@@ -389,16 +416,20 @@ const LessonDetails = ({ course, lessonsDone, testsDone, user, feedback }) => {
                 <CardHeader title="Danh sách chương" />
                 <CardContent>
                     <div className=" overflow-auto max-h-[950px]">
-                        {course?.chapters.map((chapter) => {
-                            return <Accordion expanded={expanded === 'panel' + chapter.chapter_id} onChange={handleChangeAccordion('panel' + chapter.chapter_id)}>
-                                <AccordionSummary aria-controls={"panel1d-" + chapter.chapter_id + "content"} id={"panel" + chapter.chapter_id + "d-header"}>
+                        {course?.chapters.map((chapter, key) => {
+                            return <Accordion 
+                             expanded={expanded === 'panel' + chapter.chapter_id} 
+                             onChange={handleChangeAccordion('panel' + chapter.chapter_id)}>
+                                <AccordionSummary aria-controls={"panel1d-" + chapter.chapter_id + "content"} 
+                                key={"chapter-" + key}
+                                id={"panel" + chapter.chapter_id + "d-header"}>
                                     <Typography>{chapter.chapter_name}: {chapter.description}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography>
                                         <List sx={{ width: '100%', p: 0, m: 0, bgcolor: 'background.paper' }}>
                                             {chapter.lessons.map((lesson, key) => {
-                                                return <ListItemButton key={"lesson" + key} sx={{ backgroundColor: lesson.lesson_id === currentLesson?.lesson_id ? "ButtonFace" : "" }} onClick={() => handleChangeLesson(lesson)} >
+                                                return <ListItemButton key={"lesson-" + key} sx={{ backgroundColor: lesson.lesson_id === currentLesson?.lesson_id ? "ButtonFace" : "" }} onClick={() => handleChangeLesson(lesson)} >
                                                     <ListItemIcon >
                                                         <SvgIcon sx={{ fontSize: 30 }} color={lessonsDone?.includes(lesson.lesson_id) && currentLesson?.lesson_id !== lesson.lesson_id ? "success" : "primary"}>
                                                             {lesson.lesson_id === currentLesson?.lesson_id ? <PauseCircleFilledIcon /> : lessonsDone?.includes(lesson.lesson_id) ? <CheckCircleIcon /> : <PlayCircleIcon />}
@@ -411,7 +442,7 @@ const LessonDetails = ({ course, lessonsDone, testsDone, user, feedback }) => {
                                             })}
                                             {chapter.tests.map((test, key) => {
                                                 return (
-                                                    <ListItemButton key={"test" + key} sx={{ backgroundColor: test.test_id === currentTest?.test_id ? "ButtonFace" : "" }} onClick={() => handleShowTest(test)} >
+                                                    <ListItemButton key={"test-" + key} sx={{ backgroundColor: test.test_id === currentTest?.test_id ? "ButtonFace" : "" }} onClick={() => handleShowTest(test)} >
                                                         <ListItemIcon >
                                                             <SvgIcon sx={{ fontSize: 30 }} color={testsDone?.includes(test?.test_id) ? "success" : "secondary"}>
                                                                 {testsDone?.includes(test?.test_id) ? <CheckCircleIcon /> : <QuizIcon />}

@@ -15,9 +15,6 @@ namespace WebApi.Config
 
                 config.CreateMap<Account, AccountDTO>();
 
-                config.CreateMap<InsertAccountDTO, Account>();
-                config.CreateMap<GetAccountDTO, Account>();
-                config.CreateMap<UpdateAccountDTO, Account>();
 
                 config.CreateMap<BlogDetailDTO, BlogDetail>();
                 config.CreateMap<BlogDetail, BlogDetailDTO>();
@@ -26,7 +23,8 @@ namespace WebApi.Config
                 config.CreateMap<BlogCategory, BlogCategoryDTO>();
 
                 config.CreateMap<BlogDTO, Blog>();
-                config.CreateMap<Blog, BlogDTO>().ForMember(dest => dest.BlogDetails, opt => opt.MapFrom(src => src.BlogDetails));
+                config.CreateMap<Blog, BlogDTO>()
+                .ForMember(dest => dest.BlogDetails, opt => opt.MapFrom(src => src.BlogDetails));
 
                 config.CreateMap<ContactDTO, Contact>();
                 config.CreateMap<Contact, ContactDTO>();

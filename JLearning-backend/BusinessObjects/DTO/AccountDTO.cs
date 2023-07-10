@@ -12,6 +12,9 @@ namespace BusinessObjects.DTO
         [JsonPropertyName("email")]
         public string Email { get; set; }
 
+        [JsonPropertyName("password")]
+        public string? Password { get; set; }
+
         [JsonPropertyName("name")]
         public string? Name { get; set; }
 
@@ -32,5 +35,7 @@ namespace BusinessObjects.DTO
 
         [JsonPropertyName("role_id")]
         public int? RoleId { get; set; }
+
+        
     }
 }

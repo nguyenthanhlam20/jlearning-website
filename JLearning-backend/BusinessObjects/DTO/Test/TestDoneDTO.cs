@@ -10,11 +10,11 @@ namespace BusinessObjects.DTO
     public class TestDoneDTO
     {
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [JsonPropertyName("test_id")]
-        public int TestId { get; set; }
+        public int? TestId { get; set; }
         [JsonPropertyName("course_id")]
-        public int CourseId { get; set; }
+        public int? CourseId { get; set; }
 
     }
 }

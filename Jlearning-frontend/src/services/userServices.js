@@ -5,7 +5,7 @@ import axios from "axios";
   updateInfo: async(user) => {
 
     console.log("update-info: ", user);
-    const response = await axios.post(API.MANAGE_ACCOUNT + "/update-info", user);
+    const response = await axios.put(API.MANAGE_ACCOUNT + "/update-info", user);
     return response.data;
   },
 

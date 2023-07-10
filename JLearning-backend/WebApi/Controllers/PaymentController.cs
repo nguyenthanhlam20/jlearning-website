@@ -4,6 +4,7 @@ using BusinessObjects.Models;
 using Microsoft.AspNetCore.Mvc;
 using Reporitories;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebApi.Controllers
 {
@@ -82,7 +83,7 @@ namespace WebApi.Controllers
 
             var result = new
             {
-                data = payment,
+                data = paymentDTO,
                 url = paymentUrl,
             };
             return Ok(result);
@@ -91,15 +92,17 @@ namespace WebApi.Controllers
         [HttpGet("get")]
         public ActionResult GetPayments()
         {
-            List<Payment> payments = repository.GetPayments();
-            return Ok(payments);
+            IEnumerable<Payment> payments = repository.GetPayments();
+            IEnumerable<PaymentDTO> paymentDTOs = _mapper.Map<IEnumerable<PaymentDTO>>(payments);
+            return Ok(paymentDTOs);
         }
 
         [HttpPost("get/by-user")]
         public ActionResult GetPaymentsByUser([FromBody] GetPaymentDTO GetPaymentDTO)
         {
-            List<Payment> payments = repository.GetPaymentsByUser(GetPaymentDTO.Email);
-            return Ok(payments);
+            IEnumerable<Payment> payments = repository.GetPaymentsByUser(GetPaymentDTO.Email);
+            IEnumerable<PaymentDTO> paymentDTOs = _mapper.Map<IEnumerable<PaymentDTO>>(payments);
+            return Ok(paymentDTOs);
         }
     }
 }

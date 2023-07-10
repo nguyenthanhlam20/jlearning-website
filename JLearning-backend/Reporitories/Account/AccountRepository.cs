@@ -7,10 +7,7 @@ namespace Reporitories
 {
     public class AccountRepository : IAccountRepository
     {
-        public bool ChangePassword(Account account)
-        {
-            throw new NotImplementedException();
-        }
+        public bool ChangePassword(Account account) => AccountDAO.ChangePassword(account);
 
         public Account FindAccountByEmail(string email)=>AccountDAO.FindAccountByEmail(email);
 

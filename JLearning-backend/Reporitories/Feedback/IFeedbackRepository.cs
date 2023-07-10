@@ -9,7 +9,7 @@ namespace Reporitories
 {
     public interface IFeedbackRepository
     {
-        Feedback FindFeedBackById(int courseId, string email);
+        Feedback FindFeedBackById(int? courseId, string email);
         void CreateFeedback(Feedback fb);
         void UpdateFeedback(Feedback fb);
     }

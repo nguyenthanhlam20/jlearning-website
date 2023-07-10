@@ -24,9 +24,9 @@ import axios from "axios";
   },
 
   getLessonsDone: async (user) => {
-    console.log("get-lessons-done-input", user);
+    // console.log("get-lessons-done-input", user);
     const response = await axios.post(API.MANAGE_LESSON + "/get/lesson-done", user);
-    console.log("get-lessons-done-response", response);
+    // console.log("get-lessons-done-response", response);
     return response.data;
   },
  

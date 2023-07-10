@@ -4,7 +4,7 @@ import axios from "axios";
  const feedbackServices = {
   updateFeedback: async (feedback) => {
     console.log("update-feedback", feedback);
-    const response = await axios.post(API.MANAGE_FEEDBACK + "/update", feedback);
+    const response = await axios.put(API.MANAGE_FEEDBACK + "/update", feedback);
     return response.data;
   },
   insertFeedback: async (feedback) => {

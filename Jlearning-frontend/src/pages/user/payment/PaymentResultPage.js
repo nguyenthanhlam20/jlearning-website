@@ -23,10 +23,10 @@ const PaymentResultPage = () => {
     React.useEffect(() => {
         if (flag === true && payment !== null) {
             if (paymentStatus === true) {
-                dispatch(insertPayment(payment));
                 dispatch(insertUserCourse({ email: payment.email, course_id: payment.course_id, enrolled_date: payment.created_date }));
-                dispatch(setIsRefresh());
+                dispatch(insertPayment(payment));
                 flag = false;
+                dispatch(setIsRefresh());
             }
             dispatch(resetPayment());
         }

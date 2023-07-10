@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WhOKMNjRlJHmeVD60TJdhzMXvBb2GQO6u6437wQTG/mQJ/mvG7MXm4lPg1f1gbI/QBfeP+92IqAm1WJolWskog==",
+  "dgSpecHash": "aILZFplEOTe+C8PJDmI/8qmeerkf/7QUa1eqVhz+Tkp7z6wGrCaKwfRilGPvAMBd2T5xKhzhfr6ttk/8iiDwWw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADMIN\\Downloads\\JLearningBE-main\\JLearningBE-main\\JLearning\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\ADMIN\\Documents\\Jlearning\\JLearning-backend\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
