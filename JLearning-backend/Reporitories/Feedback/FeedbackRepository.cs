@@ -10,6 +10,7 @@ namespace Reporitories
 {
     public class FeedbackRepository : IFeedbackRepository
     {
+        public List<Feedback> GetFeebacks() => FeedBackDAO.GetFeebacks();
         public void CreateFeedback(Feedback fb) => FeedBackDAO.CreateFeedback(fb);
 
         public Feedback FindFeedBackById(int? courseId, string email) => FeedBackDAO.FindFeedBackById(courseId, email);

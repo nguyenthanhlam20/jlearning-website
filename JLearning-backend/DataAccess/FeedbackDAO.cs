@@ -26,6 +26,24 @@ namespace DataAccess
             }
             return fb;
         }
+
+        public static List<Feedback> GetFeebacks()
+        {
+            List<Feedback> fb = null;
+            try
+            {
+                using (var context = new JlearningContext())
+                {
+                    fb = context.Feedbacks.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+            return fb;
+        }
         public static void CreateFeedback(Feedback fb)
         {
             try

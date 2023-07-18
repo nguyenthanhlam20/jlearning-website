@@ -34,6 +34,13 @@ namespace WebApi.Controllers
             return Ok(feedbackDTO);
         }
 
+        [HttpGet("get")]
+        public ActionResult GetFeedbacks()
+        {
+            List<Feedback> feedbacks =  repository.GetFeebacks();
+            return Ok(feedbacks);
+        }
+
         // POST api/<FeedbackController>
         [HttpPost("insert")]
         public ActionResult InsertFeedback([FromBody] FeedbackDTO feedbackDTO)
