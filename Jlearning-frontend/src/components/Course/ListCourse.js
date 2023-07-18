@@ -41,6 +41,16 @@ const ListCourse = ({ data }) => {
         avatar_url: '',
         created_at: '',
     });
+
+    const handleChangeValue = (key, value) => {
+        setValues(prevValues => ({
+            ...prevValues,
+            [key]: value
+        }));
+    };
+
+    // onChange = (e) => handleChangeValue("created", e.target.value);
+
     React.useEffect(() => {
         if (currentFile?.url != undefined) {
             // alert(currentFile?.url);
@@ -76,13 +86,7 @@ const ListCourse = ({ data }) => {
         setCoursesPagination(courses.slice(value * rowsPerPage, value * rowsPerPage + rowsPerPage));
     }
 
-    const handleChangeValue = (key, value) => {
-        setValues(prevValues => ({
-            ...prevValues,
-            [key]: value
-        }));
-    };
-
+   
     const handleSubmitCourse = () => {
 
         if (values.course_name.trim() === '') {

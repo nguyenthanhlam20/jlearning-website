@@ -47,10 +47,14 @@ namespace WebApi.Controllers
         [HttpPost("update")]
         public ActionResult Put([FromBody] ContactDTO contactDTO)
         {
+            Console.WriteLine("Response contact from email: " + contactDTO.Email);
             var contact = repository.FindContactById((int)contactDTO.ContactId);
             if (contact == null) return NotFound();
             Contact c = _mapper.Map<Contact>(contactDTO);
             repository.UpdateContact(c);
+
+            EmailServices.SendEmail(contactDTO.Email, contactDTO.Subject, contactDTO.ResponseMessage);
+
             return Ok();
         }
 

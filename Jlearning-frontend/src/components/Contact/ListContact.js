@@ -86,10 +86,10 @@ const ListContact = ({ data }) => {
             subject: "Phản Hồi Thắc Mắc Từ JLEARNING website",
             contact_id: currentContact?.contact_id,
             name: currentContact?.name,
-            status: 1,
-            question: currentContact?.request_message,
-            response_date: new Date(),
-            answer: responseMessage,
+            status: true,
+            request_message: currentContact?.request_message,
+            response_date: new Date(new Date().toLocaleDateString()),
+            response_message: responseMessage,
         }
         dispatch(updateContact(details));
         setIsOpenModal(false);

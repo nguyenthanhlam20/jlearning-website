@@ -21,9 +21,14 @@ namespace BusinessObjects.DTO
         public DateTime? ResponseDate { get; set; }
         [JsonPropertyName("status")]
         public bool? Status { get; set; }
+        [JsonPropertyName("subject")]
+
+        public string? Subject { get; set; }
         [JsonPropertyName("request_message")]
         public string? RequestMessage { get; set; }
         [JsonPropertyName("response_message")]
         public string? ResponseMessage { get; set; }
     }
+
+   
 }

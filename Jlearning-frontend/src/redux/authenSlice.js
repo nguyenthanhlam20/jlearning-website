@@ -78,14 +78,14 @@ const authenSlice = createSlice({
     });
 
     builder.addCase(forgotPassword.fulfilled, (state, action) => {
-      const { status, email } = action.payload;
-      if (status === true) {
-        state.email = email;
-        toast.success("Yêu cầu thành công");
-      } else {
-        toast.warning("Email không tồn tại");
-      }
+      const { message, email } = action.payload;
 
+      toast.success(message);
+      state.email = email;
+
+    });
+    builder.addCase(forgotPassword.rejected, (state, action) => {
+      toast.warning(action.payload);
     });
   },
 });

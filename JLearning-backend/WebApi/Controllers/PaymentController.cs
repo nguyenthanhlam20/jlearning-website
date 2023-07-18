@@ -30,6 +30,102 @@ namespace WebApi.Controllers
         public ActionResult InsertPayment([FromBody]PaymentDTO paymentDTO)
         {
             Payment payment = _mapper.Map<Payment>(paymentDTO);
+
+
+            string htmlBody = $@"
+            <html>
+            <head>
+                <title>Hóa Đơn Mua Khóa Học</title>
+                <style>
+                    /* Your invoice styling goes here */
+                    table {{
+                        border-collapse: collapse;
+                        width: 100%;
+                        font-family: Arial, sans-serif;
+                    }}
+                    th, td {{
+                        border: 1px solid #ddd;
+                        padding: 12px;
+                    }}
+                    th {{
+                        background-color: #f2f2f2;
+                    }}
+                    tr:nth-child(even) {{
+                        background-color: #f2f2f2;
+                    }}
+                    body {{
+                        font-family: Arial, sans-serif;
+                    }}
+                    .invoice {{
+                        max-width: 800px;
+                        margin: 0 auto;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        padding: 20px;
+                        background-color: #fff;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    }}
+                    .invoice-header {{
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }}
+                    .invoice-header h2 {{
+                        margin: 0;
+                    }}
+                    .invoice-logo {{
+                        display: block;
+                        max-width: 200px;
+                        margin: 0 auto;
+                        margin-bottom: 20px;
+                    }}
+                    .invoice-footer {{
+                        text-align: center;
+                        margin-top: 20px;
+                        font-size: 12px;
+                        color: #888;
+                    }}
+                </style>
+            </head>
+            <body>
+                <div class='invoice'>
+                    <div class='invoice-header'>
+                        <h2>Hóa Đơn Mua Khóa Học</h2>
+                    </div>
+                    <div class='invoice-details'>
+                        <table>
+                            <tr>
+                                <th>Khách hàng</th>
+                                <td>{paymentDTO.Name}</td>
+                            </tr>
+                            <tr>
+                                <th>Tên khóa học</th>
+                                <td>{paymentDTO.CourseName}</td>
+                            </tr>
+                            <tr>
+                                <th>Giá</th>
+                                <td>${paymentDTO.Amount.ToString("N0") + "đ"}</td>
+                            </tr>
+                            <tr>
+                                <th>Ngày mua</th>
+                                <td>{DateTime.Now}</td>
+                            </tr>
+                            <tr>
+                                <th>Nhà cung cấp</th>
+                                <td>{"JLearning Website"}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class='invoice-footer'>
+                        <!-- Add your footer content here -->
+                        <p>Liên hệ: nguyenthanhlam7010@gmail.com</p>
+                        <p>Cảm ơn vì đã tin tưởng và dùng dịch vụ của chúng tôi!</p>
+                    </div>
+                </div>
+            </body>
+            </html>";
+
+            EmailServices.SendHtmlEmail(paymentDTO.Email, "Hóa Đơn Mua Khóa Học Tại JLearning Website", htmlBody);
+
             repository.InsertPayment(payment);
             return Ok();
         }

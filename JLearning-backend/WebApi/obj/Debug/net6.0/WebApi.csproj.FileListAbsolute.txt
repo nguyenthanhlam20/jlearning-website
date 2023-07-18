@@ -226,3 +226,11 @@ C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\ref
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\WebApi.pdb
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\WebApi.genruntimeconfig.cache
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\ref\WebApi.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\MailKit.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\MimeKit.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll

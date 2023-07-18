@@ -4,7 +4,7 @@ import axios from "axios";
 const contactServices = {
   updateContact: async (contact) => {
     console.log("update-contact", contact);
-    const response = await axios.post(API.MAIL + "/send", contact);
+    const response = await axios.post(API.MANAGE_CONTACT + "/update", contact);
     return response.data;
   },
   insertContact: async (contact) => {

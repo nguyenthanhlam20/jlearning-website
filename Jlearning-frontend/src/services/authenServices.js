@@ -34,7 +34,7 @@ const signup = async (user) => {
  * @returns {object} 400 - Bad request
  */
 const forgotPassword = async (email) => {
-  const response = await axios.post(API.MAIL + "/send/forgot-password", email);
+  const response = await axios.post(API.MAIL + "/forgot-password", email);
   return response.data;
 };
 
