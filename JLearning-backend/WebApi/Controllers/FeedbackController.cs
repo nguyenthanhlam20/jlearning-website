@@ -38,7 +38,9 @@ namespace WebApi.Controllers
         public ActionResult GetFeedbacks()
         {
             List<Feedback> feedbacks =  repository.GetFeebacks();
-            return Ok(feedbacks);
+
+            IEnumerable<FeedbackDTO> feedbackDTOs = _mapper.Map<IEnumerable<FeedbackDTO>>(feedbacks);
+            return Ok(feedbackDTOs);
         }
 
         // POST api/<FeedbackController>

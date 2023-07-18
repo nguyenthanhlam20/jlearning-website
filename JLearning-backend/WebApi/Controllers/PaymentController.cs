@@ -103,7 +103,7 @@ namespace WebApi.Controllers
                             </tr>
                             <tr>
                                 <th>Giá</th>
-                                <td>${paymentDTO.Amount.ToString("N0") + "đ"}</td>
+                                <td>{paymentDTO.Amount.ToString("N0") + "đ"}</td>
                             </tr>
                             <tr>
                                 <th>Ngày mua</th>

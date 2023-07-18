@@ -8,7 +8,8 @@ const starIcon = (
 );
 
 const SingleTestimonial = ({ testimonial }) => {
-  const { star, name, user_avatar_url, message } = testimonial;
+  const { star, course_name
+,    name, user_avatar_url, message } = testimonial;
 
   let ratingIcons = [];
   for (let index = 0; index < star; index++) {
@@ -25,10 +26,12 @@ const SingleTestimonial = ({ testimonial }) => {
         className="wow fadeInUp h-full rounded-md bg-white p-8 shadow-one dark:bg-[#1D2144] lg:px-5 xl:px-8"
         data-wow-delay=".1s"
       >
-        <div className="mb-5 flex items-center space-x-1">
-          <RatingStar disabled={true} value={star} />
+        <div className="mb-5 flex items-center justify-between space-x-1">
+        <span style={{display: "block"}}>{course_name}</span> 
+         <RatingStar disabled={true} value={star} />
         </div>
-        <p className="mb-8 overflow-auto h-64 border-b border-body-color border-opacity-10 pb-8 text-base leading-relaxed text-body-color dark:border-white dark:border-opacity-10 dark:text-white">
+       
+        <p className="mb-8 overflow-auto h-36 border-b border-body-color border-opacity-10 pb-8 text-base leading-relaxed text-body-color dark:border-white dark:border-opacity-10 dark:text-white">
           “{message}“
         </p>
         <div className="flex items-center">

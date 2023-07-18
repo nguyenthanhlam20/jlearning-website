@@ -33,7 +33,7 @@ const courseServices = {
     return response.data;
   },
   updateCourse: async (course) => {
-    course.price = parseFloat(course.price.replace("₫", "").replace(".", ""));
+    course.price = parseFloat(course.price.replace(/\./g, "").replace("₫", ""));
     console.log("update-course", course);
     const response = await axios.put(API.MANAGE_COURSE + "/update", course);
     console.log("update-course-response", response);

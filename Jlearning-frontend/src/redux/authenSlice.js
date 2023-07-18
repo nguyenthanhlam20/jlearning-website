@@ -85,7 +85,8 @@ const authenSlice = createSlice({
 
     });
     builder.addCase(forgotPassword.rejected, (state, action) => {
-      toast.warning(action.payload);
+      console.log(action);
+      toast.warning( "Your email doesn't related to any account!");
     });
   },
 });

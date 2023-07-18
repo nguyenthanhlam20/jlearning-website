@@ -18,7 +18,7 @@ const PaymentHistoryPage = () => {
         dispatch(getPaymentsByUser({ email: user?.email }));
     }, [isRefresh]);
 
-    console.log(payments);
+    console.log("payments: ", payments);
 
     return (
         <>

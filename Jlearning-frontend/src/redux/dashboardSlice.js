@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { dashboardServices } from "../services";
 import { toast } from 'react-toastify';
 
-export const getData = createAsyncThunk("get-dara", async () => {
+export const getData = createAsyncThunk("get-data", async () => {
     const response = await dashboardServices.getData();
     return response;
 });

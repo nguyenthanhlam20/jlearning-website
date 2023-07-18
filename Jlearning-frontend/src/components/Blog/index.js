@@ -64,7 +64,7 @@ const Blog = () => {
 
                 key={"item-" + pageNumber} className={` w-full h-full duration-700 ease-in-out grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 md:gap-x-6 lg:gap-x-8 xl:grid-cols-3 `}>
                 {blogs.slice(startIndex, endIndex).map((blog) => (
-                  <div key={"blog-" + blog.id} id={pageNumber} className="w-full h-full" style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;" }}>
+                  <div key={"blog-" + blog.blog_id} id={pageNumber} className="w-full h-full" style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;" }}>
                     <SingleBlog categories={categories} actionTitle={"Xem chi tiết"} icon={<EyeIcon />} handleAction={handleAction} blog={blog} />
                   </div>
                 ))}

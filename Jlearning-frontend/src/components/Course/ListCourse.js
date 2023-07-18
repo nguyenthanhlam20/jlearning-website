@@ -112,11 +112,10 @@ const ListCourse = ({ data }) => {
             return;
         }
 
-        const currentDate = new Date().toLocaleDateString();
 
         dispatch(insertCourse({
             ...values,
-            created_at: new Date(currentDate),
+            created_at: new Date(),
             duration: parseInt(values.duration.trim()),
             price: parseFloat(values.price.replace(/\./g, "").replace("₫", "")),
         }));

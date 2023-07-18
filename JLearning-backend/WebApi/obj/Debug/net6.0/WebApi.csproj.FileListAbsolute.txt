@@ -210,7 +210,6 @@ C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\Web
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\WebApi.AssemblyInfoInputs.cache
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\WebApi.AssemblyInfo.cs
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\WebApi.csproj.CoreCompileInputs.cache
-C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\staticwebassets\msbuild.WebApi.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\staticwebassets\msbuild.build.WebApi.props
@@ -234,3 +233,5 @@ C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\Sys
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ADMIN\Documents\Jlearning\JLearning-backend\WebApi\obj\Debug\net6.0\WebApi.MvcApplicationPartsAssemblyInfo.cs

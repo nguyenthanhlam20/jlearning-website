@@ -29,7 +29,7 @@ namespace WebApi.Controllers
 
             if (account == null)
             {
-                return NotFound("Your email doesn't related to any account!");
+                return NotFound();
             }
 
             string recipientEmail = dto.Email;

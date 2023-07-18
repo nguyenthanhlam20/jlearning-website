@@ -53,7 +53,7 @@ if(isGoToLogin == true) {
     }
 
     console.log("email: " + email + ", password: " + password + ", fullname: " + fullname);
-    dispatch(signup({ fullname: fullname, email: email, password: password, role_id: 2 }));
+    dispatch(signup({ name: fullname, email: email, password: password, role_id: 2 }));
    
 
   }
