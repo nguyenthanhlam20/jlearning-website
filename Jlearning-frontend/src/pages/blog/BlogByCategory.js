@@ -32,7 +32,7 @@ const BlogByCategory = ({ data, categories }) => {
         if (currentCategory === 0) {
             setBlogs(data);
         } else {
-            setBlogs(data.filter((b) => b.blog_category_id === currentCategory));
+            setBlogs(data.filter((b) => b?.blog_category_id === currentCategory));
             // window.alert("go hee", currentCategory);
         }
 

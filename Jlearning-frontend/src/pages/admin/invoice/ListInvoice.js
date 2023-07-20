@@ -80,7 +80,17 @@ const ListInvoice = ({ data, user, courses }) => {
     );
 
     React.useEffect(() => {
-        const result = data?.filter((invoice) => invoice?.course_name?.toLowerCase().includes(searchTerm?.value.toLowerCase()));
+        const result = data?.filter((invoice) => {
+            const courseName = invoice?.course_name?.toLowerCase();
+            const searchTermValue = searchTerm?.value?.toLowerCase();
+            const paymentId = new String(invoice.payment_id);
+            // Add your conditions here using the logical OR operator (||)
+            return courseName.includes(searchTermValue) || // First condition: courseName includes the searchTermValue
+            paymentId.includes(searchTermValue) || // Second condition: additional property check
+                   // Add more conditions if needed
+                   false; // Always include this to prevent an empty filter result
+          });
+          
         setInvoices(result);
         setPage(0);
         setRowsPerPage(5);

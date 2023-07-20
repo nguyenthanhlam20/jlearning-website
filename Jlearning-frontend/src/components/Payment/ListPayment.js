@@ -10,8 +10,22 @@ import BookIcon from '@mui/icons-material/Book';
 import AlarmIcon from '@mui/icons-material/Alarm';
 import XMarkIcon from "@heroicons/react/24/solid/XMarkIcon";
 import { Box } from '@mui/system';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPaymentsByUser } from '../../redux/paymentSlice';
 
-const ListPayment = ({ data, user, courses }) => {
+const ListPayment = ({user, courses }) => {
+
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.payment.paymentByUsers);
+    const isRefresh = useSelector((state) => state.payment.isRefresh);
+
+
+    React.useEffect(() => {
+        dispatch(getPaymentsByUser({ email: user?.email }));
+    }, [isRefresh]);
+
+
+
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [page, setPage] = useState(0);
     const [payments, setPayments] = useState(data);

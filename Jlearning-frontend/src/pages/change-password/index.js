@@ -97,13 +97,13 @@ const ChangePasswordPage = () => {
                                             htmlFor="email"
                                             className="mb-3 block text-sm font-medium text-dark dark:text-white"
                                         >
-                                            Mật khẩu cũ
+                                            Xác nhận mật khẩu mới
                                         </label>
                                         <input
                                             type="password"
                                             name="confirmPassword"
 
-                                            placeholder={"Xác nhận mật khẩu mới"}
+                                            placeholder={"Nhập mật khẩu mới"}
                                             onChange={(e) => setConfirmNewPassword(e.target.value)}
                                             className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                                         />

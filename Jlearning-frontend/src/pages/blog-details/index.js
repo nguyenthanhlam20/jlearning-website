@@ -25,7 +25,7 @@ const BlogDetailsPage = () => {
   const blogs = useSelector((state) => state.blog.data);
   const blog = useSelector((state) => state.blog.specific);
 
-  const relatedBlogs = blogs?.filter((b) => (b.blog_category_id === blog?.blog_category_id) && (b.blog_id !== blog.blog_id));
+  const relatedBlogs = blogs?.filter((b) => (b?.blog_category_id === blog?.blog_category_id) && (b.blog_id !== blog.blog_id));
 
   React.useEffect(() => {
     dispatch(getBlogs());
@@ -99,7 +99,7 @@ const BlogDetailsPage = () => {
                   <div className="mb-5">
                     <Link to={ROUTE_CONSTANTS.BLOG_PAGE} className="bg-lime text-black text-sm font-medium rounded-full py-2 px-4">
 
-                      {categories?.find((c) => c.blog_category_id === blog.blog_category_id).name}
+                      {categories?.find((c) => c?.blog_category_id === blog?.blog_category_id)?.name}
                     </Link>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ const BlogDetailsPage = () => {
                   <div className="mb-10 w-full overflow-hidden rounded">
                     <div className="relative w-full">
                       <img
-                        src={blog.blog_avatar_url}
+                        src={blog?.blog_avatar_url}
                         alt="image"
                         fill
                         className="h-full w-full  object-center"
@@ -117,7 +117,7 @@ const BlogDetailsPage = () => {
                   </div>
 
                   <p className="whitespace-pre-wrap mb-8 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
-                    {blog.blog_description}
+                    {blog?.blog_description}
                   </p>
 
                   {blog?.blog_details.map((details) => {
@@ -151,7 +151,7 @@ const BlogDetailsPage = () => {
                       <div className="flex items-center">
                         {categories?.map((c) => {
                           return (
-                            <TagButton href={ROUTE_CONSTANTS.BLOG_PAGE + "?blog_category_id=" + c.blog_category_id} text={c.name} />
+                            <TagButton href={ROUTE_CONSTANTS.BLOG_PAGE + "?blog_category_id=" + c?.blog_category_id} text={c?.name} />
                           );
                         })}
                       </div>
@@ -180,8 +180,8 @@ const BlogDetailsPage = () => {
                     return (
                       <li className="mb-6 border-b border-body-color border-opacity-10 pb-6 dark:border-white dark:border-opacity-10">
                         <RelatedPost
-                          title={rb.blog_name}
-                          image={rb.blog_avatar_url}
+                          title={rb?.blog_name}
+                          image={rb?.blog_avatar_url}
                           slug={ROUTE_CONSTANTS.BLOG_DETAILS_PAGE + "?blog_id=" + rb.blog_id}
                           date={new Date(rb.created_date).toLocaleDateString()}
                         />
@@ -200,8 +200,8 @@ const BlogDetailsPage = () => {
                   {categories?.map((c) => {
                     return (
                       <li>
-                        <Link className="mb-3 inline-block text-base font-medium text-body-color hover:text-primary" to={ROUTE_CONSTANTS.BLOG_PAGE + "?blog_category_id=" + c.blog_category_id}>
-                          {c.name}
+                        <Link className="mb-3 inline-block text-base font-medium text-body-color hover:text-primary" to={ROUTE_CONSTANTS.BLOG_PAGE + "?blog_category_id=" + c?.blog_category_id}>
+                          {c?.name}
                         </Link>
                       </li>
                     );

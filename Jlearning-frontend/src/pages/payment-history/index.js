@@ -9,16 +9,8 @@ import ListPayment from "../../components/Payment/ListPayment";
 const PaymentHistoryPage = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.authen.user);
-    const payments = useSelector((state) => state.payment.paymentByUsers);
-    const isRefresh = useSelector((state) => state.payment.isRefresh);
     const courses = useSelector((state) => state.course.data);
-
-
-    React.useEffect(() => {
-        dispatch(getPaymentsByUser({ email: user?.email }));
-    }, [isRefresh]);
-
-    console.log("payments: ", payments);
+   
 
     return (
         <>
@@ -29,7 +21,7 @@ const PaymentHistoryPage = () => {
                 description="Xem thông tin các giao dịch mà bạn thanh toán"
             />
 
-            <ListPayment data={payments} user={user} courses={courses} />
+            <ListPayment user={user} courses={courses} />
 
         </>
     );

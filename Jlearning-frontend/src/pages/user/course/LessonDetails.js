@@ -102,7 +102,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 
-const LessonDetails = ({ course, user }) => {
+const LessonDetails = ({ course_id, user }) => {
     const feedback = useSelector((state) => state.feedback.specific);
     const lessonsDone = useSelector((state) => state.lesson.lessons_done);
     const testsDone = useSelector((state) => state.test.tests_done);
@@ -110,18 +110,33 @@ const LessonDetails = ({ course, user }) => {
     const isRefreshL = useSelector((state) => state.lesson.isRefresh);
     const isRefreshT = useSelector((state) => state.test.isRefreshSpecific);
 
+    const course = useSelector((state) => state.course.specific);
+    
+
+    const isRefresh = useSelector((state) => state.course.isRefreshSpecific);
+
     React.useEffect(() => {
-        dispatch(getFeedbackById({ course_id: course.course_id, email: user?.email }));
-        dispatch(getLessonsDone({ email: user?.email, course_id: course.course_id }));
-        dispatch(getTestsDone({ email: user?.email, course_id: course.course_id }));
-    }, []);
+        dispatch(getCourseById({ course_id: course_id }));
+    }, [])
+
+    React.useEffect(() => {
+        if (isRefresh === true) {
+            dispatch(getFeedbackById({ course_id: course_id, email: user?.email }));
+        }
+    }, [isRefresh])
+
+    React.useEffect(() => {
+        dispatch(getFeedbackById({ course_id: course_id, email: user?.email }));
+        dispatch(getLessonsDone({ email: user?.email, course_id: course_id }));
+        dispatch(getTestsDone({ email: user?.email, course_id: course_id }));
+    }, [course]);
 
     React.useEffect(() => {
         if (isRefreshL === true || isRefreshT == true) {
-            dispatch(getLessonsDone({ email: user?.email, course_id: course.course_id }));
-            dispatch(getTestsDone({ email: user?.email, course_id: course.course_id }));
+            dispatch(getLessonsDone({ email: user?.email, course_id: course_id }));
+            dispatch(getTestsDone({ email: user?.email, course_id: course_id }));
         }
-    }, [isRefreshL, isRefreshT]);
+    }, [isRefreshL, isRefreshT, course]);
 
  
 

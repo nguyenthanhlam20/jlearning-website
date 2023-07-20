@@ -272,7 +272,7 @@ const BlogList = ({ data, categories }) => {
 
                                                     </Stack>
                                                     <Stack direction={"row"} spacing={2}>
-                                                        <AppSelect value={values.blog_category_id} data={categories} title={"blog_category_id"} display={"name"} placeholder={"Chọn loại tin tức"} handleChangeValue={handleChangeValue} />
+                                                        <AppSelect value={values?.blog_category_id} data={categories} title={"blog_category_id"} display={"name"} placeholder={"Chọn loại tin tức"} handleChangeValue={handleChangeValue} />
 
                                                     </Stack>
                                                     <Stack direction={"row"} spacing={2}>

@@ -16,25 +16,12 @@ const LessonViewPage = () => {
     const course_id = params.get('course_id');
     const dispatch = useDispatch();
 
-    const course = useSelector((state) => state.course.specific);
-    
-
-    const isRefresh = useSelector((state) => state.course.isRefreshSpecific);
-
-    React.useEffect(() => {
-        dispatch(getCourseById({ course_id: course_id }));
-    }, [])
-
-    React.useEffect(() => {
-        if (isRefresh === true) {
-            dispatch(getFeedbackById({ course_id: course_id, email: user?.email }));
-        }
-    }, [isRefresh])
+   
 
     return (
         <>
             <SmoothScrollUp />
-            <LessonDetails course={course} user={user}  />
+            <LessonDetails course_id={course_id} user={user}  />
         </>
     )
 };

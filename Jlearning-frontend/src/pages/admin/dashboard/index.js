@@ -31,6 +31,7 @@ const DashboardPage = () => {
 
   React.useEffect(() => {
     dispatch(getData());
+    
   }, [user])
 
   return <>
