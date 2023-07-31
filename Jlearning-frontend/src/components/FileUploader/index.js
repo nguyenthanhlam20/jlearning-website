@@ -71,8 +71,11 @@ const FileUploader = ({
                             const reader = new FileReader();
                             reader.onload = () => {
                                 setPreviewUrl(reader.result);
+                                // console.log(reader.result);
                             };
-                            reader.readAsDataURL(file);
+                            if(file) {
+                                reader.readAsDataURL(file);
+                            }
 
                         }} />
                     </label>

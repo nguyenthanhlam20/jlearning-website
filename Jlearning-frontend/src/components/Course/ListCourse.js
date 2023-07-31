@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
     Box, Button, CardContent, Card, Container, Stack, Dialog, DialogTitle
     , DialogContent, Divider, CardHeader, SvgIcon, Grid
@@ -28,9 +28,14 @@ const ListCourse = ({ data }) => {
     const [searchTerm, setSearchTerm] = React.useState({ value: '' });
     const [currentFile, setCurrentFile] = React.useState(null);
     const [previewUrl, setPreviewUrl] = React.useState(null);
-
+    const videoPreview = useRef();
 
     const [disableSubmit, setDisableSubmit] = React.useState(false);
+
+
+// React.useEffect(() => {
+//     videoPreview.url = previewUrl;
+// }, [previewUrl])
 
     const [values, setValues] = useState({
         course_name: '',
@@ -134,6 +139,7 @@ const ListCourse = ({ data }) => {
         setIsOpenModal(false);
         // console.log(values);
     }
+
 
 
 
